@@ -478,8 +478,8 @@
         }
 
         .card:hover .profile-pic img {
-            transform: scale(2.5);
-            object-position: 0px 25px;
+            transform: scale(1); /* Stops the zoom */
+            object-position: center center; /* Keeps the image centered */
             transition: all 0.5s ease-in-out 0.5s;
         }
         /* End Profile Card Styles */
@@ -580,8 +580,8 @@
         /* ---------------------------------------------------- */
         .toast-container {
             position: fixed;
-            top: 80px; /* Adjusted to clear the fixed navigation bar */
-            right: 20px;
+            bottom: 20px; /* CHANGED */
+            left: 20px; /* CHANGED */
             z-index: 9000;
             display: flex;
             flex-direction: column;
@@ -591,10 +591,10 @@
         
         /* Keyframe that handles Slide-in, 10s Hold, and Slide-out (0.4s each) */
         @keyframes toastFullLife {
-            0% { transform: translateX(120%); opacity: 0; }
+            0% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
             4% { transform: translateX(0); opacity: 1; } /* 0.4s in (4% of 10s) */
             96% { transform: translateX(0); opacity: 1; } /* Hold */
-            100% { transform: translateX(120%); opacity: 0; } /* 0.4s out */
+            100% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
         }
         
         /* Animation for the shrinking timer bar */
@@ -1166,7 +1166,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Live Resume Preview</h2>
                 
                 <!-- Iframe Container: Changed to h-[80vh] and removed flex-1/min-h-800px -->
-                <div class="w-full max-w-5xl h-[80vh] shadow-2xl rounded-2xl overflow-hidden border border-white/10">
+                <div class="w-full max-w-4xl h-[50vh] shadow-2xl rounded-2xl overflow-hidden border border-white/10">
                     <iframe 
                         class="w-full h-full"
                         src="https://drive.google.com/file/d/1ZA42ZBrT403fYduDPTooBxUtbkkm92se/preview" 
