@@ -55,6 +55,22 @@
         }
         /* End Custom Cursor Styles */
 
+        /* --- NEW: Gradient Button Style --- */
+        .btn-gradient-live {
+            background: linear-gradient(to right, #6366F1, #A855F7, #EC4899, #A855F7, #6366F1);
+            background-size: 400% 100%;
+            animation: gradient-flow 8s linear infinite;
+            border: none;
+            color: white; /* Ensure text is white */
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* --- End Gradient Button Style --- */
+
         /* Subtle background grid pattern */
         .main-container {
             background-image:
@@ -735,6 +751,11 @@
                     <!-- Hero "Get in Touch" button SCROLLS to the chat section (#contact) -->
                     <a href="#contact" class="inline-block bg-teal-400 text-black font-bold py-3 px-8 rounded-full hover:bg-teal-300 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(45,212,191,0.4)]">
                         Get in Touch
+                    </a>
+
+                    <a href="v2.html" 
+                        class="btn-gradient-live inline-block font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 ml-4">
+                         Change Version
                     </a>
                 </div>
             </div>
