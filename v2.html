@@ -22,13 +22,21 @@
     }
     
     *{box-sizing:border-box}
-    /* --- STYLE UPDATE: Body background is now light gradient --- */
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg-gradient-end) 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg) 0%, var(--bg-gradient-end) 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
 
     /* Layout */
     .app{
       display:grid;
-      /* --- STYLE UPDATE: Made left card slimmer (300px -> 280px) and right card (340px -> 320px) --- */
       grid-template-columns: 280px 1fr 320px;
       gap:20px;
       padding:28px;
@@ -39,32 +47,30 @@
 
     /* Responsive */
     @media (max-width:1000px){
-      .app{grid-template-columns:1fr; padding:16px}
+      .app{
+        grid-template-columns:1fr;
+        padding:16px
+      }
       .left,.right{
-        position:relative;
         width:100%;
-        height: auto; /* Fix: Remove fixed height on mobile */
-        position: static; /* Fix: Remove sticky positioning */
+        height: auto;
       }
       .right{
         order:3;
-        height: auto; /* Explicitly override desktop height */
       }
       .middle{
         order:2;
-        height: auto; /* Fix: Allow feed to grow */
-        overflow: visible; /* Fix: Show all content */
       }
     }
 
-    /* --- NEW: Further refinements for small mobile screens --- */
+    /* --- Further refinements for small mobile screens --- */
     @media (max-width: 640px) {
       .app {
-        padding: 12px; /* Tighter padding on small screens */
+        padding: 12px;
       }
 
       .left-content, .left-links, .left-buttons {
-        padding: 20px; /* Reduce card padding */
+        padding: 20px;
       }
 
       .left-buttons {
@@ -73,57 +79,55 @@
       }
 
       .post-header {
-        padding: 16px 16px 8px 16px; /* Tighter post padding */
+        padding: 16px 16px 8px 16px;
       }
 
       .post-content {
-        padding: 0 16px 12px 16px; /* Tighter post padding */
+        padding: 0 16px 12px 16px;
       }
       .post-content h3 {
-        font-size: 18px; /* Slightly smaller heading */
+        font-size: 18px;
       }
       .post-content p, .post-content li {
-        font-size: 14px; /* Slightly smaller text */
+        font-size: 14px;
       }
 
       .post-actions {
-        padding: 8px 16px; /* Tighter post padding */
+        padding: 8px 16px;
       }
 
       .right {
-        padding: 12px; /* Tighter chat card padding */
+        padding: 12px;
       }
     }
 
-    /* --- NEW LEFT CARD STYLING --- */
+    /* --- LEFT CARD STYLING --- */
     .left{
-      position:sticky; top:28px;
+      position:sticky; 
+      top:28px;
       background: var(--card);
       border-radius:16px; 
       box-shadow: var(--shadow);
       border:1px solid var(--border-color);
-      /* Remove height calculation and internal flex setup */
-      padding: 0; /* Padding will be handled internally */
-      overflow: hidden; /* Contain the image's rounded corners */
+      padding: 0;
+      overflow: hidden;
     }
     
     .left-image {
-        width: 100%;
-        height: auto;
-        /* --- CHANGE: Changed from 1/1 to 4/3 to make it shorter --- */
-        aspect-ratio: 4 / 3; 
-        object-fit: cover;
-        display: block;
-        background: var(--glass);
-      }
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3; 
+      object-fit: cover;
+      display: block;
+      background: var(--glass);
+    }
         
     .left-content {
-        /* --- CHANGE: Reduced padding from 24px --- */
-        padding: 20px; 
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
+      padding: 20px; 
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
     
     .left h1 {
       font-size: 24px;
@@ -136,7 +140,7 @@
     .left .title {
       font-size: 15px;
       color: var(--muted);
-      margin-top: -8px; /* Pulls it closer to title */
+      margin-top: -8px;
     }
     
     .availability {
@@ -149,14 +153,14 @@
       font-size: 13px;
       font-weight: 500;
       color: var(--muted-2);
-      align-self: flex-start; /* Don't stretch */
+      align-self: flex-start;
     }
     
     .availability-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: #22c55e; /* Green */
+      background-color: #22c55e;
     }
     
     .location-link {
@@ -172,13 +176,12 @@
     }
     
     .left-links {
-        /* --- CHANGE: Reduced padding from 24px --- */
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        border-top: 1px solid var(--border-color);
-      }
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 1px solid var(--border-color);
+    }
     
     .contact-link-item {
       display: flex;
@@ -195,15 +198,13 @@
     }
     
     .left-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        /* --- CHANGE: Reduced padding from 24px --- */
-        padding: 0 20px 20px 20px;
-        border-top: 1px solid var(--border-color);
-        /* --- CHANGE: Reduced padding from 24px --- */
-        padding-top: 20px;
-      }
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 20px 20px 20px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
     
     .btn-primary, .btn-secondary {
       display: flex;
@@ -232,14 +233,15 @@
     .btn-secondary svg {
       opacity: 0.7;
     }
-    /* --- END OF NEW LEFT CARD STYLING --- */
-
 
     /* Middle feed */
-    .middle{height:calc(100vh - 56px); overflow:auto; padding:8px 4px}
+    .middle{
+      height:auto;
+      overflow:visible;
+      padding:8px 4px;
+    }
     .post{
       background: var(--card);
-      /* --- STYLE UPDATE: Increased border-radius --- */
       border-radius:16px; 
       margin-bottom:16px; 
       border:1px solid var(--border-color);
@@ -247,10 +249,9 @@
       transform:translateY(6px); 
       opacity:0; 
       transition:all 360ms ease;
-      overflow: hidden; /* To contain the rounded corners */
+      overflow: hidden;
     }
     
-    /* --- STYLE UPDATE: Cleaned up post header --- */
     .post-header {
       display: flex;
       align-items: center;
@@ -258,14 +259,13 @@
       padding: 20px 24px 12px 24px;
     }
     
-    /* --- STYLE UPDATE: Modified .post-avatar to work for <img> tags --- */
     .post-avatar {
       width: 44px;
       height: 44px;
       border-radius: 50%;
       flex-shrink: 0;
-      object-fit: cover; /* Ensures image fills circle */
-      background: var(--glass); /* Fallback bg */
+      object-fit: cover;
+      background: var(--glass);
     }
 
     .post-author {
@@ -280,26 +280,29 @@
       display: block;
     }
     
-    /* --- STYLE UPDATE: Increased padding --- */
     .post-content {
       padding: 0 24px 16px 24px;
     }
-    /* --- STYLE UPDATE: Post titles --- */
     .post-content h3 {
       margin: 4px 0 10px 0; 
       color:var(--text); 
       font-size: 20px;
     }
-    .post-content p, .post-content li {color:var(--muted); line-height:1.65; font-size: 15px;}
-    .post-content ul { padding-left: 20px; margin: 10px 0; }
-    /* --- STYLE UPDATE: Subheadings (like for skills) --- */
+    .post-content p, .post-content li {
+      color:var(--muted);
+      line-height:1.65;
+      font-size: 15px;
+    }
+    .post-content ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
     .post-content p.subhead {
       font-weight: 600;
       color: var(--text);
       margin: 16px 0 8px 0;
     }
     
-    /* --- NEW: Style for "What Drives Me" box --- */
     .drives-box {
       background: var(--bg);
       border: 1px solid var(--border-color);
@@ -334,7 +337,6 @@
       flex-shrink: 0;
     }
 
-    /* New Post Visual (Insta style) */
     .post-visual {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -354,14 +356,22 @@
       object-fit: cover;
     }
 
-    .tag{display:inline-block; background:rgba(14,165,164,0.12); color:var(--accent); padding:6px 10px; border-radius:999px; font-size:12px; margin-right:8px; margin-top: 4px; margin-bottom: 4px;}
+    .tag{
+      display:inline-block;
+      background:rgba(14,165,164,0.12);
+      color:var(--accent);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin-right:8px;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
     
-    /* --- NEW: Wrapper for tags inside posts --- */
     .tag-wrapper {
-        margin-top: 16px;
+      margin-top: 16px;
     }
 
-    /* --- NEW: Styles for the Skills list --- */
     .skill-list {
       list-style: none;
       padding: 0;
@@ -370,7 +380,6 @@
       grid-template-columns: 1fr;
       gap: 12px;
     }
-    /* Show two columns on wider screens */
     @media (min-width: 640px) {
       .skill-list {
         grid-template-columns: 1fr 1fr;
@@ -394,9 +403,7 @@
       height: 20px;
       color: var(--accent);
     }
-    /* --- END: Styles for Skills list --- */
 
-    /* --- NEW: Styles for Contact Buttons --- */
     .contact-buttons-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -405,7 +412,7 @@
     }
     @media (max-width: 640px) {
       .contact-buttons-wrapper {
-        grid-template-columns: 1fr; /* Stack buttons on small mobile */
+        grid-template-columns: 1fr;
       }
     }
     .btn-contact {
@@ -429,40 +436,27 @@
     .btn-contact:hover {
       opacity: 0.85;
     }
-    .btn-linkedin {
-      background-color: #0A66C2;
-    }
-    .btn-gmail {
-      background-color: #D93025;
-    }
-    .btn-whatsapp {
-      background-color: #25D366;
-    }
+    .btn-linkedin { background-color: #0A66C2; }
+    .btn-gmail { background-color: #D93025; }
+    .btn-whatsapp { background-color: #25D366; }
     .btn-instagram {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
-    /* --- END: Styles for Contact Buttons --- */
 
-
-    /* Post Actions (LinkedIn style) */
     .post-actions {
       display: flex;
       gap: 8px;
-      /* --- STYLE UPDATE: Increased padding --- */
       padding: 12px 24px;
       border-top: 1px solid var(--border-color);
-      position: relative; /* For reaction popup */
-      /* --- CSS UPDATE: Added alignment for reaction counts --- */
+      position: relative;
       align-items: center;
       justify-content: space-between;
     }
     
-    /* New: Like Button Wrapper */
     .like-btn-wrapper {
       position: relative;
     }
 
-    /* --- NEW: Reaction Count Style --- */
     .post-reactions {
       font-size: 13px;
       color: var(--muted-2);
@@ -473,17 +467,14 @@
     .post-reactions span:last-child {
       font-weight: 500;
     }
-    /* --- END: Reaction Count Style --- */
 
-
-    /* New: Reactions Popup */
     .reactions-popup {
       position: absolute;
-      bottom: calc(100% + 10px); /* Pop up from button */
+      bottom: calc(100% + 10px);
       left: -8px;
       background: var(--card-2, var(--card));
       border: 1px solid var(--border-color);
-      border-radius: 99px; /* Pill shape */
+      border-radius: 99px;
       padding: 6px 8px;
       display: flex;
       gap: 8px;
@@ -536,7 +527,6 @@
     .like-btn:hover svg {
       stroke: var(--text);
     }
-    /* Like animation */
     .like-btn.liked {
       color: var(--accent);
     }
@@ -545,80 +535,140 @@
       stroke: var(--accent);
       transform: scale(1.1);
     }
-    /* Style for liked reaction text */
     .like-btn.liked-love { color: #f91880; }
     .like-btn.liked-clap { color: #f5a623; }
     .like-btn.liked-insightful { color: #9333ea; }
 
-
     /* Right chat */
     .right{
-      position:sticky; top:28px; height:calc(100vh - 56px); 
+      position:sticky;
+      top:28px;
+      height:calc(100vh - 56px); 
       background: var(--card);
-      padding:14px; 
-      /* --- STYLE UPDATE: Increased border-radius --- */
+      padding:14px;
       border-radius:16px; 
       border:1px solid var(--border-color);
       box-shadow: var(--shadow);
     }
-    .chat-window{display:flex; flex-direction:column; height:100%}
-    .chat-messages{flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px}
+    .chat-window{
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+    .chat-messages{
+      flex:1;
+      overflow:auto;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
     
     @media (max-width:1000px) {
       .chat-messages {
-        height: 350px; /* Fix: Set explicit height on mobile */
+        height: 350px;
         flex: 0 1 350px;
       }
     }
 
-    /* --- NEW: Added rule for smaller mobile --- */
     @media (max-width: 640px) {
       .chat-messages {
-        height: 300px; /* Slightly shorter chat */
+        height: 300px;
       }
     }
 
-    .bubble{max-width:80%; padding:10px 12px; border-radius:12px; font-size:13px}
-    .bot{background:rgba(0,0,0,0.03); align-self:flex-start; color:var(--text)} /* --- STYLE UPDATE: Light theme bubble --- */
-    .me{background:linear-gradient(90deg,var(--accent),#7c3aed); color:white; align-self:flex-end}
-    .quick{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
-    .btn{background:transparent; border:1px solid var(--border-color); padding:8px 10px; border-radius:10px; cursor:pointer; color: var(--muted-2)}
-    /* --- STYLE UPDATE: Removed .light .btn --- */
+    .bubble{
+      max-width:80%;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+    }
+    .bot{
+      background:rgba(0,0,0,0.03);
+      align-self:flex-start;
+      color:var(--text)
+    }
+    .me{
+      background:linear-gradient(90deg,var(--accent),#7c3aed);
+      color:white;
+      align-self:flex-end
+    }
+    .quick{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:6px
+    }
+    .btn{
+      background:transparent;
+      border:1px solid var(--border-color);
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      color: var(--muted-2)
+    }
 
-    .composer{display:flex; gap:8px; padding-top:8px; align-items:center}
-    .composer input{flex:1; background:transparent; border:1px solid var(--border-color); padding:10px 12px; border-radius:10px; color:var(--text)}
-    .composer button{padding:10px 12px; border-radius:10px; border:0; background:var(--accent); color:#012; cursor:pointer}
+    .composer{
+      display:flex;
+      gap:8px;
+      padding-top:8px;
+      align-items:center
+    }
+    .composer input{
+      flex:1;
+      background:transparent;
+      border:1px solid var(--border-color);
+      padding:10px 12px;
+      border-radius:10px;
+      color:var(--text)
+    }
+    .composer button{
+      padding:10px 12px;
+      border-radius:10px;
+      border:0;
+      background:var(--accent);
+      color:#012;
+      cursor:pointer
+    }
 
-    /* small helpers */
-    a.faded{color:var(--muted); font-size:13px; text-decoration:none}
-    .section-title{display:flex; justify-content:space-between; align-items:center}
-    .badge{font-size:12px; color:var(--muted)}
+    .badge{
+      font-size:12px;
+      color:var(--muted)
+    }
     
-    /* --- STYLE UPDATE: Removed footer --- */
-    
-    /* subtle scrollbar */
-    .left::-webkit-scrollbar, .middle::-webkit-scrollbar, .chat-messages::-webkit-scrollbar{width:8px}
-    .left::-webkit-scrollbar-thumb, .middle::-webkit-scrollbar-thumb, .chat-messages::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.1); border-radius:6px} /* --- STYLE UPDATE: Light theme scrollbar --- */
-    /* --- STYLE UPDATE: Removed .light scrollbar styles --- */
+    .left::-webkit-scrollbar,
+    .middle::-webkit-scrollbar,
+    .chat-messages::-webkit-scrollbar{
+      width:8px
+    }
+    .left::-webkit-scrollbar-thumb,
+    .middle::-webkit-scrollbar-thumb,
+    .chat-messages::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,0.1);
+      border-radius:6px
+    }
 
-
-    /* --- STYLE UPDATE: Removed theme-toggle --- */
+    /* 🔥 FINAL OVERRIDE: On mobile, nothing sticky, everything scrolls */
+    @media (max-width:1000px){
+      .left,
+      .middle,
+      .right{
+        position: static;
+        top: auto;
+      }
+      .middle,
+      .right{
+        height: auto;
+        overflow: visible;
+      }
+    }
 
   </style>
 </head>
 <body>
   <div class="app">
-    <!-- 
-    ---
-    --- NEW LEFT CARD HTML ---
-    ---
-    -->
+    <!-- LEFT -->
     <aside class="left">
-      <!-- 
-        !!! IMPORTANT !!!
-        Replace this placeholder URL with the URL to your actual photo.
-        --- UPDATE: Using a 1:1 placeholder and CSS aspect-ratio to prevent stretch/zoom issues. ---
-      -->
       <img src="https://placehold.co/400x400/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="left-image">
       
       <div class="left-content">
@@ -651,29 +701,22 @@
         </a>
       </div>
       
-      <!-- --- HTML FIX: Removed the broken contact buttons from here --- -->
       <div class="left-buttons">
-        <!-- Add a link to your CV file here -->
         <a href="#" class="btn-primary">Download CV</a>
         <a href="#contact" class="btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           <span>Contact</span>
         </a>
         <a href="index.html" class="btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20H9v-5"/><path d="M16 21v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5"/><path d="M3 16V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5"/></svg>
-            <span>Change Version</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20H9v-5"/><path d="M16 21v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5"/><path d="M3 16V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5"/></svg>
+          <span>Change Version</span>
         </a>
       </div>
     </aside>
 
-    <!-- 
-    ---
-    --- HTML UPDATE: Re-ordered all posts in the main feed ---
-    ---
-    -->
+    <!-- MIDDLE (feed) -->
     <main class="middle" id="feed">
-
-      <!-- About Me Post (Profile Summary) -->
+      <!-- About Me Post -->
       <article class="post" id="about">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -684,7 +727,6 @@
           </div>
         </div>
         <div class="post-content">
-          <!-- --- HTML UPDATE: Added Title --- -->
           <h3>About Me</h3>
           <p>Hello! I'm <strong>BoopathiRaja Kannan</strong>, working as a VDI Admin at Anunta Technology. I manage and support virtual desktop environments, handle cloud-related operations, and troubleshoot system issues to ensure stable and reliable performance for end users.</p>
           <p>I enjoy understanding how systems work behind the scenes and finding practical solutions to technical problems. My day-to-day work involves virtualization, Azure support, monitoring environments, and resolving issues before they impact productivity.</p>
@@ -724,11 +766,10 @@
               <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
             </div>
           </div>
-          <!-- No reaction count for summary post -->
         </div>
       </article>
 
-      <!-- Experience Post (Profile Summary) -->
+      <!-- Experience -->
       <article class="post" id="experience">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -777,7 +818,7 @@
         </div>
       </article>
 
-      <!-- Skills Post (Profile Summary) -->
+      <!-- Skills -->
       <article class="post" id="skills">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -865,7 +906,7 @@
         </div>
       </article>
 
-      <!-- Projects Post (Profile Summary) -->
+      <!-- Achievements -->
       <article class="post" id="projects">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -908,7 +949,7 @@
         </div>
       </article>
 
-      <!-- Contact Post (Profile Summary) -->
+      <!-- Contact -->
       <article class="post" id="contact">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -922,29 +963,24 @@
           <h3>Get in touch</h3>
           <p>I am actively seeking new opportunities in cloud engineering and VDI administration. If you have a role that might be a good fit or just want to network, I'd love to hear from you.</p>
           
-          <!-- --- HTML FIX: Moved the themed buttons here --- -->
           <div class="contact-buttons-wrapper">
             <a href="https://linkedin.com/in/raj-boopathi" target="_blank" class="btn-contact btn-linkedin">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
               <span>LinkedIn</span>
             </a>
             <a href="mailto:boopathi.kraj@gmail.com" class="btn-contact btn-gmail">
-              <!-- --- ICON UPDATE: Cleaner email icon --- -->
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
               <span>Email Me</span>
             </a>
             <a href="https://wa.me/916374871838" target="_blank" class="btn-contact btn-whatsapp">
-              <!-- --- ICON UPDATE: Cleaner WhatsApp icon --- -->
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.45 1.32 4.95L2.06 21.94l5.25-1.38c1.44.8 3.05 1.24 4.73 1.24 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.84 12.3c-.2.5-.83 1.04-1.27 1.1-1.01.15-1.72.14-2.47-.14-.83-.3-1.84-1-3.14-2.26-1.5-1.46-2.5-3.08-2.73-3.48-.23-.4-.03-.6.2-.81.2-.18.44-.45.62-.62.2-.18.28-.3.42-.5.14-.2.1-.38-.04-.55-.14-.17-.67-1.61-.92-2.15-.25-.54-.5-.46-.68-.47-.18-.01-0.38-0.01-0.58-0.01s-0.58.08-0.88.38c-.3.3-1.14 1.1-1.14 2.68s1.17 3.1 1.32 3.3c.15.2 2.38 3.6 5.6 4.9 1.07.43 1.9.68 2.5.86.87.26 1.63.22 2.18.14.6-.09 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.08-.13-.28-.21-.58-.35z"></path></svg>
               <span>WhatsApp</span>
             </a>
             <a href="https://www.instagram.com/mr.r_a_j_a_04/" target="_blank" class="btn-contact btn-instagram">
-              <!-- --- ICON UPDATE: Cleaner Instagram icon --- -->
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
               <span>Instagram</span>
             </a>
           </div>
-          <!-- --- END HTML FIX --- -->
         </div>
         <div class="post-actions">
           <div class="like-btn-wrapper">
@@ -962,14 +998,7 @@
         </div>
       </article>
 
-      <!-- 
-      ---
-      --- BEGINNING OF TIMELINE FEED ---
-      --- (Posts below are in reverse chronological order)
-      ---
-      -->
-
-      <!-- "I Got the Job" Post (Timeline) -->
+      <!-- Timeline posts -->
       <article class="post" id="new-job">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -982,8 +1011,7 @@
         <div class="post-content">
           <h3>I'm Hired!</h3>
           <p>Hi everyone, I'm beyond excited to share that I've accepted a position as a <strong>VDI Admin (Apprentice Trainee)</strong> at Anunta Technology!</p>
-          <p>As a VDI Administrator, I am responsible for managing Azure cloud infrastructure and resolving critical incidents to maintain high availability and reliability.
-          </p>
+          <p>As a VDI Administrator, I am responsible for managing Azure cloud infrastructure and resolving critical incidents to maintain high availability and reliability.</p>
           <p>I'm incredibly grateful for this opportunity and can't wait to dive in. A huge thank you to everyone who supported me on my journey to get here!</p>
         </div>
         <div class="post-actions">
@@ -1006,7 +1034,6 @@
         </div>
       </article>
 
-      <!-- Certifications Post (Timeline) -->
       <article class="post" id="certifications">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -1044,7 +1071,6 @@
         </div>
       </article>
 
-      <!-- Education Post (Timeline) -->
       <article class="post" id="education">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -1079,7 +1105,6 @@
         </div>
       </article>
 
-      <!-- 12th Completion Post (Timeline) -->
       <article class="post" id="hsc">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -1113,7 +1138,6 @@
         </div>
       </article>
       
-      <!-- 10th Completion Post (Timeline) -->
       <article class="post" id="sslc">
         <div class="post-header">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja Kannan" class="post-avatar">
@@ -1152,7 +1176,6 @@
     <!-- RIGHT (chat) -->
     <aside class="right">
       <div class="chat-window">
-        <!-- --- HTML UPDATE: Replaced DIV with IMG for chat bot pic --- -->
         <div style="display:flex;align-items:center;gap:10px">
           <img src="https://placehold.co/100x100/e2e8f0/64748b?text=BR" alt="BoopathiRaja" style="width:44px;height:44px;border-radius:10px;object-fit:cover;">
           <div><strong>Hello — I'm a helper</strong><div style="color:var(--muted);font-size:13px">Click a quick action to jump to that section</div></div>
@@ -1163,10 +1186,8 @@
           <div class="bubble bot">Try clicking "Experience" or "Skills" to jump to a section.</div>
         </div>
 
-        <!-- --- CHAT UPDATE: Added Skills & Certifications buttons --- -->
         <div class="quick">
           <button class="btn" data-target="about">About me</button>
-          <!-- --- HTML UPDATE: Added "New Job!" button --- -->
           <button class="btn" data-target="new-job">New Job!</button>
           <button class="btn" data-target="experience">Experience</button>
           <button class="btn" data-target="skills">Skills</button>
@@ -1185,43 +1206,35 @@
   </div>
 
   <script>
-    /* --- SCRIPT UPDATE: Removed theme handling logic --- */
-
     // Like Button Animation
     document.querySelectorAll('.like-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        // Simple toggle for the main "Like" button
         if (!btn.closest('.like-btn-wrapper').querySelector('.reaction-icon:hover')) {
-            btn.classList.toggle('liked');
-            // Remove other reactions if just toggling 'Like'
-            btn.classList.remove('liked-love', 'liked-clap', 'liked-insightful');
-            if (!btn.classList.contains('liked')) {
-                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
-            } else {
-                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
-            }
+          btn.classList.toggle('liked');
+          btn.classList.remove('liked-love', 'liked-clap', 'liked-insightful');
+          if (!btn.classList.contains('liked')) {
+            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
+          } else {
+            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
+          }
         }
       });
     });
 
-    // New: Reaction Icon Click Handler
+    // Reaction Icon Click Handler
     document.querySelectorAll('.reaction-icon').forEach(icon => {
       icon.addEventListener('click', () => {
         const reaction = icon.getAttribute('data-reaction');
         const reactionIcon = icon.getAttribute('data-icon');
         const wrapper = icon.closest('.like-btn-wrapper');
         const likeBtn = wrapper.querySelector('.like-btn');
-        // --- SCRIPT UPDATE: Find reaction count in the same .post-actions container ---
         const reactionsEl = wrapper.parentElement.querySelector('.post-reactions');
 
-        // Update main button text and icon
         likeBtn.innerHTML = `<span>${reactionIcon}</span> <span>${reaction}</span>`;
         
-        // Remove all reaction-specific classes
         likeBtn.classList.remove('liked', 'liked-love', 'liked-clap', 'liked-insightful');
-
-        // Add the 'liked' class and the specific reaction class
         likeBtn.classList.add('liked');
+
         if (reaction === 'Love') {
           likeBtn.classList.add('liked-love');
         } else if (reaction === 'Clap') {
@@ -1230,16 +1243,14 @@
           likeBtn.classList.add('liked-insightful');
         }
 
-        // --- SCRIPT UPDATE: Update the reaction count icon ---
         if (reactionsEl) {
-            reactionsEl.querySelector('span:first-child').textContent = reactionIcon;
+          reactionsEl.querySelector('span:first-child').textContent = reactionIcon;
         }
         
-        // Hide popup (optional, but good UX)
-          icon.closest('.reactions-popup').style.visibility = 'hidden';
-          setTimeout(() => {
-             icon.closest('.reactions-popup').style.visibility = '';
-          }, 100);
+        icon.closest('.reactions-popup').style.visibility = 'hidden';
+        setTimeout(() => {
+          icon.closest('.reactions-popup').style.visibility = '';
+        }, 100);
       });
     });
 
@@ -1261,18 +1272,18 @@
       })
     })
 
-    // Smooth scroll for new contact button
+    // Smooth scroll for Contact button
     document.querySelector('.btn-secondary[href="#contact"]').addEventListener('click', (e) => {
-        e.preventDefault();
-        const el = document.getElementById('contact');
-        if (el) {
-            const postHeader = el.querySelector('.post-header');
-            if(postHeader) {
-                postHeader.scrollIntoView({behavior:'smooth',block:'start'});
-            } else {
-                el.scrollIntoView({behavior:'smooth',block:'start'});
-            }
+      e.preventDefault();
+      const el = document.getElementById('contact');
+      if (el) {
+        const postHeader = el.querySelector('.post-header');
+        if(postHeader) {
+          postHeader.scrollIntoView({behavior:'smooth',block:'start'});
+        } else {
+          el.scrollIntoView({behavior:'smooth',block:'start'});
         }
+      }
     });
 
     // Chat functions
@@ -1283,7 +1294,6 @@
       div.textContent = msg;
       chat.appendChild(div);
 
-      // Auto-scroll chat
       chat.scrollTo({
         top: chat.scrollHeight,
         behavior: 'smooth'
@@ -1298,26 +1308,26 @@
       respondTo(val);
     });
 
-    document.getElementById('chatInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); document.getElementById('sendBtn').click(); } });
+    document.getElementById('chatInput').addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        document.getElementById('sendBtn').click();
+      }
+    });
 
     function respondTo(text){
       const t = text.toLowerCase();
-      const el = document.getElementById(t);
-      
       let targetId = null;
       if(t.includes('about')) targetId = 'about';
       else if(t.includes('exp')||t.includes('experience')) targetId = 'experience';
-      // --- SCRIPT UPDATE: Added new keywords ---
       else if(t.includes('skill')) targetId = 'skills';
       else if(t.includes('edu')) targetId = 'education';
       else if(t.includes('cert') || t.includes('course')) targetId = 'certifications';
       else if(t.includes('proj') || t.includes('achieve')) targetId = 'projects';
       else if(t.includes('contact')) targetId = 'contact';
-      // --- SCRIPT UPDATE: Added new post IDs ---
       else if(t.includes('job')) targetId = 'new-job';
       else if(t.includes('12th') || t.includes('hsc')) targetId = 'hsc';
       else if(t.includes('10th') || t.includes('sslc')) targetId = 'sslc';
-
 
       if(targetId) {
         const el = document.getElementById(targetId);
@@ -1339,7 +1349,6 @@
         }
       }
       
-      // --- SCRIPT UPDATE: Updated fallback message ---
       setTimeout(()=> addChat('bot', "I can jump to sections: about, experience, skills, education, certifications, achievements, contact. Try one of those!"), 600);
     }
 
