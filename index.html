@@ -34,7 +34,7 @@
             transition: width 0.3s, height 0.3s;
             filter: blur(40px);
         }
-        
+       
         .cursor-dot {
             pointer-events: none;
             position: fixed;
@@ -98,7 +98,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
+       
         /* Keyframes for Hero Text Animation */
         @keyframes text-reveal {
             from {
@@ -137,7 +137,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+       
         /* Animated underline for section titles */
         .section-title::after {
             content: '';
@@ -157,7 +157,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
+       
         .stagger-children > * {
             opacity: 0;
             transform: translateY(20px);
@@ -175,7 +175,7 @@
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.05);
         }
-        
+       
         /* Individual Skill Card Styling */
         .individual-skill-card {
             background: rgba(255, 255, 255, 0.03);
@@ -330,12 +330,12 @@
             box-shadow: #00000030 0px 70px 30px -50px;
             transition: all 0.5s ease-in-out;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            
+           
             animation: ultraSubtleFloat 8s ease-in-out infinite;
             perspective: 1000px; /* Enable 3D perspective */
             transform-style: preserve-3d; /* Enable 3D space */
         }
-        
+       
         /* Enhanced hover effect with 3D tilt and stronger glow */
         .card:hover {
             transform: rotateX(2deg) rotateY(2deg) scale(1.02);
@@ -604,7 +604,7 @@
             gap: 10px;
             pointer-events: none; 
         }
-        
+       
         /* Keyframe that handles Slide-in, 10s Hold, and Slide-out (0.4s each) */
         @keyframes toastFullLife {
             0% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
@@ -612,15 +612,15 @@
             96% { transform: translateX(0); opacity: 1; } /* Hold */
             100% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
         }
-        
+       
         /* Animation for the shrinking timer bar */
         @keyframes timerBar {
             from { width: 100%; }
             to { width: 0%; }
         }
-        
-        
-        
+       
+       
+       
         .toast {
             position: relative;
             background: rgba(17, 17, 17, 0.9);
@@ -658,9 +658,56 @@
             text-decoration: underline;
         }
 
+        /* ---------------------------------------------------- */
+        /* NEW: Sticky Bottom Nav for Mobile */
+        /* ---------------------------------------------------- */
+        .bottom-nav-sticky {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50; /* Match header z-index */
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 0.5rem; /* 12px top/bottom, 8px left/right */
+        }
+
+        .bottom-nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            color: #9CA3AF; /* gray-400 */
+            transition: all 0.2s ease;
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1rem;
+            gap: 2px;
+            padding: 4px 0;
+            background: none;
+            border: none;
+        }
+        
+        .bottom-nav-link:hover {
+            color: #EAEAEA; /* light gray */
+        }
+        
+        /* This class will be added by JavaScript */
+        .bottom-nav-link.active-nav-icon {
+            color: #2DD4BF; /* teal-400 */
+        }
+
+        .bottom-nav-link svg {
+            width: 1.5rem; /* 24px */
+            height: 1.5rem; /* 24px */
+        }
+
     </style>
 </head>
-<body class="main-container">
+<!-- MODIFICATION: Added padding-bottom for mobile to make space for the new nav bar -->
+<body class="main-container pb-24 md:pb-0">
 
     <!-- Custom Cursor Elements -->
     <div class="orb"></div>
@@ -672,10 +719,11 @@
     </div>
 
     <!-- Available for Work Status Indicator -->
-    <div class="fixed bottom-6 right-6 z-40 flex items-center bg-white/5 backdrop-blur-md py-2 px-4 rounded-full border border-white/10 shadow-2xl fade-in-section" style="animation-delay: 1s;">
+    <!-- MODIFICATION: Added 'hidden md:flex' to hide this on mobile, as it conflicts with the new bottom nav -->
+    <div class="fixed bottom-6 right-6 z-40 hidden md:flex items-center bg-white/5 backdrop-blur-md py-2 px-4 rounded-full border border-white/10 shadow-2xl fade-in-section" style="animation-delay: 1s;">
         <span class="relative flex h-3 w-3 mr-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
         </span>
         <span class="text-sm font-semibold text-gray-200 tracking-wide">Available for work</span>
     </div>
@@ -713,25 +761,13 @@
                     Contact
                 </button>
             </div>
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden z-10">
-                <button id="mobile-menu-button" aria-label="Toggle menu" class="text-gray-300 hover:text-teal-400 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
+            
+            <!-- REMOVED: Mobile Menu Button (Hamburger) -->
+            
         </nav>
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-0 hidden flex flex-col items-center justify-center space-y-8 text-xl opacity-0 transition-opacity duration-300 md:hidden">
-             <a href="#about" class="mobile-link text-gray-300 hover:text-teal-400 transition-colors">About</a>
-             <a href="#experience" class="mobile-link text-gray-300 hover:text-teal-400 transition-colors">Experience</a>
-             <a href="#achievements" class="mobile-link text-gray-300 hover:text-teal-400 transition-colors">Achievements</a>
-             <a href="#skills" class="mobile-link text-gray-300 hover:text-teal-400 transition-colors">Skills</a>
-             <a href="#education" class="mobile-link text-gray-300 hover:text-teal-400 transition-colors">Learning</a>
-             <!-- Mobile Contact button opens Modal -->
-             <button onclick="openModal(); mobileMenuButton.click();" class="mobile-link bg-teal-400 text-black px-6 py-2 rounded-full font-bold">Contact</button>
-        </div>
+        
+        <!-- REMOVED: Mobile Menu Overlay -->
+        
     </header>
 
     <main class="container mx-auto px-8 sm:px-10">
@@ -787,7 +823,7 @@
                                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
                                 </a>
                                 <a href="httpsm//wa.me/916374871838" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm.789-5.988l4.461-1.16-2.669 3.946-1.792-2.786zm8.374-1.254c.355.011.698.021 1.024.032.326.01.622.031.867.071.682.09.967.318 1.015.421.139.308.187.614.187.614.001.015-.028.539-.34.939-.312.4-.621.75-.824.961-.203.21-.426.389-.672.489-.246.1-.482.132-.7.132-.238 0-.468-.029-.672-.08-.204-.051-.628-.219-1.076-.481-1.127-.666-2.138-1.503-2.94-2.528-.802-1.025-1.41-2.181-1.758-3.239-.348-1.058-.458-2.016-.458-2.016s.032-.54.227-.781c.195-.241.439-.36.591-.45.152-.09.307-.121.463-.121.155 0 .33.001.482.001.152.001.326.001.484.029.172.03.355.109.507.5.152.39.52.961.52.961.029.061.058.121.058.181s-.029.121-.088.181c-.058.061-.137.139-.235.238-.098.098-.196.196-.284.284-.088.088-.157.166-.196.215-.039.049-.068.088-.068.118s.001.137.03.225c.029.088.147.381.382.721.235.34.569.75.998 1.151.429.401.896.721 1.383.961.487.239 1.033.439 1.58.581.547.142 1.152.219 1.804.219.652 0 1.258-.078 1.765-.219.507-.142.915-.36 1.162-.649.247-.29.401-.63.401-.63s.068-.137.127-.294c.058-.157.108-.305.127-.413.019-.108.029-.206.029-.275s-.02-.128-.05-.167c-.029-.039-.098-.088-.196-.147-.098-.058-.235-.127-.421-.215-.187-.088-.432-.177-.732-.275-.3-.098-.679-.147-1.1-.147-.421 0-.823.049-1.183.137-.361.088-.673.206-.897.334-.224.128-.411.265-.54.382-.128.118-.216.206-.236.216-.02.01-.058.01-.088-.02-.029-.029-.077-.078-.156-.166-.078-.088-.157-.187-.255-.284-.098-.098-.186-.196-.265-.294-.078-.099-.137-.177-.176-.236-.039-.058-.068-.107-.068-.147s.02-.118.058-.196c.039-.078.118-.187.225-.305.108-.118.236-.235.383-.353.147-.118.305-.216.463-.294.158-.079.317-.148.455-.197.138-.049.255-.088.353-.108.098-.02.186-.029.255-.029.07 0 .15-.001.235-.001z"/></svg>
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm.789-5.988l4.461-1.16-2.669 3.946-1.792-2.786zm8.374-1.254c.355.011.698.021 1.024.032.326.01.622.031.867.071.682.09.967.318 1.015.421.139.308.187.614.187.614.001.015-.028.539-.34.939-.312.4-.621.75-.824.961-.203.21-.426.389-.672.489-.246.1-.482.132-.7.132-.238 0-.468-.029-.672-.08-.204-.051-.628-.219-1.076-.481-1.127-.666-2.138-1.503-2.94-2.528-.802-1.025-1.41-2.181-1.758-3.239-.348-1.058-.458-2.016-.458-2.016s.032-.54.227-.781c.195-.241.439-.36.591-.45.152-.09.307-.121.463-.121.155 0 .33.001.482.001.152.001.326.001.484.029.172.03.355.109.507.5.152.39.52.961.52.961.029.061.058.121.058.181s-.029.121-.088.181c-.058.061-.137.139-.235.238-.098.098-.196.196-.284.284-.088.088-.157.166-.196.215-.039.049-.068.088-.068.118s.001.137.03.225c.029.088.147.381.382.721.235.34.569.75.998 1.151.429.401.896.721 1.383.961.487.239 1.033.439 1.58.581.547.142 1.152.219 1.804.219.652 0 1.258-.078 1.765-.219.507-.142.915-.36 1.162-.649.247-.29.401-.63.401-.63s.068-.137.127-.294c.058-.157.108-.305.127-.413.019-.108.029-.206.029-.275s-.02-.128-.05-.167c-.029-.039-.098-.088-.196-.147-.098-.058-.235-.127-.421-.215-.187-.088-.432-.177-.732-.275-.3-.098-.679-.147-1.imply-1.1-.147-.421 0-.823.049-1.183.137-.361.088-.673.206-.897.334-.224.128-.411.265-.54.382-.128.118-.216.206-.236.216-.02.01-.058.01-.088-.02-.029-.029-.077-.078-.156-.166-.078-.088-.157-.187-.255-.284-.098-.098-.186-.196-.265-.294-.078-.099-.137-.177-.176-.236-.039-.058-.068-.107-.068-.147s.02-.118.058-.196c.039-.078.118-.187.225-.305.108-.118.236-.235.383-.353.147-.118.305-.216.463-.294.158-.079.317-.148.455-.197.138-.049.255-.088.353-.108.098-.02.186-.029.255-.029.07 0 .15-.001.235-.001z"/></svg>
                                 </a>
                             </div>
                             <a href="https://drive.google.com/file/d/1ZA42ZBrT403fYduDPTooBxUtbkkm92se/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button">Download CV</a>
@@ -804,16 +840,16 @@
              </div>
              <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-6xl mx-auto">
                  <div class="lg:col-span-3 fade-in-section leading-relaxed text-lg">
-                    <p class="text-gray-300 mb-6">
-                        Hello! I'm <span class="text-teal-400 font-semibold">Boopathiraja Kannan</span>, working as a VDI Admin at Anunta Technology. I manage and support virtual desktop environments, handle cloud-related operations, and troubleshoot system issues to ensure stable and reliable performance for end users.
-                    </p>
-                    <p class="text-gray-300 mb-6">
-                        I enjoy understanding how systems work behind the scenes and finding practical solutions to technical problems. My day-to-day work involves virtualization, Azure support, monitoring environments, and resolving issues before they impact productivity.
-                    </p>
-                    <p class="text-gray-300">
-                        Outside of work, I like exploring new technologies, upgrading my skills, and learning tools that help me grow in the cloud and infrastructure domain.
-                    </p>
-                </div>
+                     <p class="text-gray-300 mb-6">
+                         Hello! I'm <span class="text-teal-400 font-semibold">Boopathiraja Kannan</span>, working as a VDI Admin at Anunta Technology. I manage and support virtual desktop environments, handle cloud-related operations, and troubleshoot system issues to ensure stable and reliable performance for end users.
+                     </p>
+                     <p class="text-gray-300 mb-6">
+                         I enjoy understanding how systems work behind the scenes and finding practical solutions to technical problems. My day-to-day work involves virtualization, Azure support, monitoring environments, and resolving issues before they impact productivity.
+                     </p>
+                     <p class="text-gray-300">
+                         Outside of work, I like exploring new technologies, upgrading my skills, and learning tools that help me grow in the cloud and infrastructure domain.
+                     </p>
+                 </div>
                  <div class="lg:col-span-2 fade-in-section" style="transition-delay: 200ms;">
                      <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
                          <h3 class="text-xl font-bold mb-6 text-white flex items-center">
@@ -978,7 +1014,7 @@
                     <div class="tech-stack-item">
                         <svg class="text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Terminal"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                     </div>
-                    
+                   
                     <!-- Icons Set 2 (Duplicate for seamless loop) -->
                     <div class="tech-stack-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" title="Microsoft Azure" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=AZ'" />
@@ -1007,7 +1043,7 @@
                 </div>
             </div>
         </section>
-        
+       
         <!-- Skills Section -->
         <section id="skills" class="py-20 md:py-32 bg-white/[0.02] -mx-6 px-6">
              <div class="text-center mb-16 fade-in-section">
@@ -1114,7 +1150,7 @@
 
              </div>
         </section>
-        
+       
         <!-- Education Section -->
         <section id="education" class="py-20 md:py-32">
             <div class="max-w-3xl mx-auto fade-in-section text-center">
@@ -1159,10 +1195,10 @@
         <section id="contact" class="py-20 md:py-32 text-center relative">
             <!-- Decorative background element -->
             <div class="absolute inset-0 opacity-30 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.05) 0%, transparent 70%);"></div>
-            
+           
             <div class="max-w-3xl mx-auto relative z-10 px-4">
                 <h2 class="text-4xl md:text-5xl font-bold section-title mb-16 fade-in-section">Let's Discuss</h2>
-                
+               
                 <!-- Chat Container -->
                 <div id="chat-interface" class="bg-[#111] rounded-3xl border border-white/10 shadow-2xl overflow-hidden text-left fade-in-section mx-auto max-w-2xl">
                     <!-- Chat Header -->
@@ -1187,7 +1223,7 @@
             <!-- Parent container: Removed h-screen -->
             <div class="w-full flex flex-col items-center justify-center p-4 md:p-8 fade-in-section">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Live Resume Preview</h2>
-                
+               
                 <!-- Iframe Container: Changed to h-[80vh] and removed flex-1/min-h-800px -->
                 <div class="w-full max-w-4xl h-[50vh] shadow-2xl rounded-2xl overflow-hidden border border-white/10">
                     <iframe 
@@ -1257,7 +1293,7 @@
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto text-blue-400 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </a>
-                
+               
                 <!-- Instagram Link (Themed: Violet/Pink) -->
                 <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link-modal instagram-theme flex items-center p-5 rounded-xl group cursor-pointer">
                     <div class="w-12 h-12 bg-fuchsia-500/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
@@ -1273,10 +1309,50 @@
         </div>
     </div>
 
+    <!-- NEW: Sticky Bottom Nav Bar HTML -->
+    <nav class="bottom-nav-sticky flex items-center justify-around md:hidden">
+        <!-- Home -->
+        <a href="#home" class="bottom-nav-link active-nav-icon" data-section="home" aria-label="Home">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a.75.75 0 011.06 0l8.955 8.955M3.75 11.25V21h6V15h3v6h6V11.25M21.75 12l-9.75-9.75L2.25 12" />
+            </svg>
+            <span class="font-medium">Home</span>
+        </a>
+        <!-- About -->
+        <a href="#about" class="bottom-nav-link" data-section="about" aria-label="About Me">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A18.75 18.75 0 0112 22.5c-5.523 0-10.434-2.25-14.001-5.906" />
+            </svg>
+            <span class="font-medium">About</span>
+        </a>
+        <!-- Experience -->
+        <a href="#experience" class="bottom-nav-link" data-section="experience" aria-label="Experience">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.05c0 .621-.504 1.125-1.125 1.125H5.125c-.621 0-1.125-.504-1.125-1.125v-4.05M20.25 14.15c.621 0 1.125-.504 1.125-1.125v-4.05c0-.621-.504-1.125-1.125-1.125h-3.75M3.75 14.15c-.621 0-1.125-.504-1.125-1.125v-4.05c0-.621.504-1.125 1.125-1.125h3.75m0-3.75h9.75c.621 0 1.125.504 1.125 1.125v4.05c0 .621-.504 1.125-1.125 1.125h-9.75c-.621 0-1.125-.504-1.125-1.125v-4.05c0-.621.504-1.125 1.125-1.125z" />
+            </svg>
+            <span class="font-medium">Work</span>
+        </a>
+        <!-- Skills -->
+        <a href="#skills" class="bottom-nav-link" data-section="skills" aria-label="Skills">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6H6a6 6 0 006 6z" />
+            </svg>
+            <span class="font-medium">Skills</span>
+        </a>
+        <!-- Contact (Modal) -->
+        <button onclick="openModal()" class="bottom-nav-link" aria-label="Open Contact Modal">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <span class="font-medium">Contact</span>
+        </button>
+    </nav>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+           
             // --- Toast Notification Logic (FIXED) ---
             const toastContainer = document.getElementById('toast-container');
             // Total animation duration (10s)
@@ -1285,21 +1361,21 @@
             function showToast(messageHtml, delayBeforeShow = 0) {
                 setTimeout(() => {
                     const toastId = 'toast-' + Date.now();
-                    
+                   
                     const toastHTML = `
                         <div id="${toastId}" class="toast">
                             ${messageHtml}
                             <div class="toast-timer"></div>
                         </div>
                     `;
-                    
+                   
                     // Add new toast
                     toastContainer.insertAdjacentHTML('afterbegin', toastHTML);
                     const toastEl = document.getElementById(toastId);
 
                     // Re-attach cursor effects
                     if (window.attachCursorEffects) window.attachCursorEffects();
-                    
+                   
                     // --- Custom Removal Logic for Interactive Toasts ---
                     if (messageHtml.includes('reward')) {
                         // Make the whole toast clickable to scroll/remove
@@ -1311,7 +1387,7 @@
                         };
 
                         toastEl.addEventListener('click', clickHandler);
-                        
+                       
                         // Ensure anchor links inside toast also trigger removal and scroll
                         const link = toastEl.querySelector('a');
                         if (link) link.addEventListener('click', clickHandler);
@@ -1325,14 +1401,14 @@
                     }, TOAST_DURATION + 500); 
                 }, delayBeforeShow);
             }
-            
+           
             // Function to manually remove a toast (used on click/interactivity)
             function removeToast(id) {
                 const toastEl = document.getElementById(id);
                 if (toastEl) {
                     // 1. Force the slideOut animation to begin immediately (0.4s duration)
                     toastEl.style.animation = 'slideOut 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards';
-                    
+                   
                     // 2. Also stop the timer bar immediately
                     const timerBar = toastEl.querySelector('.toast-timer');
                     if (timerBar) timerBar.style.animationPlayState = 'paused';
@@ -1341,19 +1417,19 @@
                     setTimeout(() => toastEl.remove(), 400);
                 }
             }
-            
+           
             // Function to run the sequence of toasts
             function runToastSequence() {
                 // Clear any existing toasts before running a new sequence
                 toastContainer.innerHTML = ''; 
-                
+               
                 // Toast 1: Appears at 0.5s
                 showToast('👋 Welcome to my site! Glad you dropped by. 🎉', 500);
-                
+               
                 // Toast 2: Appears 3.5 seconds later (at 4.0s total delay)
                 showToast('🎁 Congratulations! You\'ve found an exciting reward! Want to know? <a href="#contact">Let\'s connect!</a> 😜', 4000);
             }
-            
+           
             // 1. Run once immediately on load
             runToastSequence(); 
 
@@ -1428,7 +1504,7 @@
                     const text = line.textContent.trim();
                     line.innerHTML = '';
                     const chars = text.split('');
-                    
+                   
                     chars.forEach((char, charIndex) => {
                         const span = document.createElement('span');
                         span.innerHTML = char === ' ' ? '&nbsp;' : char;
@@ -1442,10 +1518,10 @@
             // Handle links and buttons for cursor effect (RETAINED)
             if (!isTouchDevice) {
                 window.attachCursorEffects = () => {
-                    const interactiveElements = document.querySelectorAll('a, button, .project-card, .experience-block, .skill-card, .education-card, .cert-card, .cursor-pointer, .individual-skill-card, .quick-reply-btn, .contact-link-modal, .toast');
+                    const interactiveElements = document.querySelectorAll('a, button, .project-card, .experience-block, .skill-card, .education-card, .cert-card, .cursor-pointer, .individual-skill-card, .quick-reply-btn, .contact-link-modal, .toast, .bottom-nav-link');
                     interactiveElements.forEach(el => {
                         if (el.dataset.cursorAttached) return; 
-                        
+                       
                         el.addEventListener('mouseenter', () => {
                             orb.style.width = '450px';
                             orb.style.height = '450px';
@@ -1478,36 +1554,38 @@
                 }
             });
 
-            // Mobile Menu Toggle (RETAINED)
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            let isMenuOpen = false;
+            // REMOVED: Mobile Menu Toggle Logic
+            
+            // --- NEW: Bottom Nav Active State Logic ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.bottom-nav-link[data-section]');
 
-            mobileMenuButton.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    mobileMenu.classList.remove('hidden');
-                    setTimeout(() => {
-                        mobileMenu.classList.remove('opacity-0');
-                        mobileMenu.classList.add('opacity-100');
-                    }, 10);
-                    document.body.style.overflow = 'hidden'; 
-                } else {
-                    mobileMenu.classList.remove('opacity-100');
-                    mobileMenu.classList.add('opacity-0');
-                    setTimeout(() => {
-                        mobileMenu.classList.add('hidden');
-                    }, 300);
-                    document.body.style.overflow = '';
-                }
-            });
-
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (isMenuOpen) mobileMenuButton.click();
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        // Remove active from all
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-nav-icon');
+                        });
+                        // Add active to the correct one
+                        const activeLink = document.querySelector(`.bottom-nav-link[data-section="${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active-nav-icon');
+                        }
+                    }
                 });
+            };
+
+            const sectionObserver = new IntersectionObserver(observerCallback, {
+                root: null,
+                threshold: 0.3, // 30% of the section must be visible
+                rootMargin: "-20% 0px -50% 0px" // Triggers when section is in the middle 30% of the viewport
             });
+
+            sections.forEach(sec => sectionObserver.observe(sec));
+            // --- END: Bottom Nav Active State Logic ---
+
 
             // Intersection Observer for Fade-in Animations (RETAINED)
             const observerOptions = {
@@ -1545,7 +1623,7 @@
                         </div>
                         <div class="bg-white/5 rounded-2xl rounded-tl-sm p-4 text-gray-200 max-w-[85%] leading-relaxed shadow-sm space-y-3">
                             <p class="text-white font-bold text-lg mb-2 border-b border-white/10 pb-2">Connect Directly</p>
-                            
+                           
                             <!-- Email -->
                             <a href="mailto:boopathi.kraj@gmail.com" class="flex items-center p-2 rounded-lg bg-white/5 hover:bg-teal-500/20 transition-colors border border-white/10">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4" /></svg>
@@ -1557,7 +1635,7 @@
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mr-2 flex-shrink-0" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                                 <span class="text-sm">LinkedIn Profile</span>
                             </a>
-                            
+                           
                             <!-- Instagram -->
                             <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center p-2 rounded-lg bg-white/5 hover:bg-fuchsia-500/20 transition-colors border border-white/10">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-400 mr-2 flex-shrink-0" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
