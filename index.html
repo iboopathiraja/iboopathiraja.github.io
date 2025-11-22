@@ -22,7 +22,6 @@
         .orb {
             pointer-events: none;
             position: fixed;
-            /* FIX: Increased z-index to be above the modal (10000) */
             z-index: 10001; 
             top: 0;
             left: 0;
@@ -38,7 +37,6 @@
         .cursor-dot {
             pointer-events: none;
             position: fixed;
-             /* FIX: Increased z-index to be above the modal (10000) */
             z-index: 10002;
             top: 0;
             left: 0;
@@ -55,21 +53,73 @@
         }
         /* End Custom Cursor Styles */
 
-        /* --- NEW: Gradient Button Style --- */
-        .btn-gradient-live {
-            background: linear-gradient(to right, #6366F1, #A855F7, #EC4899, #A855F7, #6366F1);
-            background-size: 400% 100%;
-            animation: gradient-flow 8s linear infinite;
+        /* --- NEW CUSTOM BUTTON STYLE (Change Version) --- */
+        .btn-neon {
+            font-size: 1.1rem; /* Adjusted size to fit layout */
+            color: #EAEAEA; /* Adjusted for dark background */
+            font-family: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            position: relative;
             border: none;
-            color: white; /* Ensure text is white */
+            background: none;
+            text-transform: uppercase;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-duration: 500ms;
+            transition-property: color;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.05em;
         }
 
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .btn-neon:focus,
+        .btn-neon:hover {
+            transition-duration: 500ms;
+            color: #ffffff;
+            /* Adjusted gradient to keep text visible on dark bg */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
-        /* --- End Gradient Button Style --- */
+
+        .btn-neon:focus:after,
+        .btn-neon:hover:after {
+            width: 100%;
+            left: 0px;
+        }
+
+        .btn-neon:after {
+            content: "";
+            pointer-events: none;
+            bottom: -4px;
+            left: 0px;
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: #dfffdf;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-duration: 500ms;
+            transition-property: width, left;
+        }
+
+        .btn-neon:focus:before,
+        .btn-neon:hover:before {
+            width: 100%;
+            left: 0px;
+        }
+
+        .btn-neon:before {
+            content: "";
+            pointer-events: none;
+            bottom: -4px;
+            left: 0px;
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: #0f0; /* Neon Green */
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-duration: 500ms;
+            transition-property: width, left;
+            filter: blur(5px);
+        }
 
         /* Subtle background grid pattern */
         .main-container {
@@ -127,8 +177,8 @@
             -webkit-text-fill-color: transparent;
             animation: gradient 3s linear infinite, simple-fade-in 1s ease-out forwards;
             display: inline-block;
-            font-weight: 900; /* Ensure it's extra bold */
-            opacity: 0; /* Start hidden for fade-in */
+            font-weight: 900;
+            opacity: 0;
         }
         @keyframes gradient {
             to { background-position: 200% center; }
@@ -164,7 +214,7 @@
             transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Custom card styling - Used for Achievements, Education, etc. */
+        /* Custom card styling */
         .project-card, .skill-card, .education-card, .cert-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -184,17 +234,16 @@
             display: flex;
             align-items: center;
             padding: 1rem;
-            border-radius: 0.75rem; /* rounded-xl */
+            border-radius: 0.75rem;
             min-height: 60px; 
         }
         .individual-skill-card:hover {
-            border-color: rgba(45, 212, 191, 0.5); /* Teal border on hover */
+            border-color: rgba(45, 212, 191, 0.5);
             transform: translateY(-3px);
             background: rgba(255, 255, 255, 0.06);
         }
 
-
-        /* New styles for the enhanced experience section */
+        /* Experience section styles */
         .experience-block {
             background: #111111;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -232,7 +281,7 @@
             transform: scale(1.05);
         }
 
-        /* Chat Interface Styles (Unchanged) */
+        /* Chat Interface Styles */
         .chat-container {
             max-height: 600px;
             overflow-y: auto;
@@ -270,7 +319,7 @@
             40% { transform: scale(1); }
         }
 
-        /* Tech Stack Scrolling Marquee (Unchanged) */
+        /* Tech Stack Scrolling Marquee */
         .tech-stack-container {
             width: 100%;
             overflow: hidden;
@@ -289,8 +338,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 150px; /* Width for each icon container */
-            height: 80px; /* Height for each icon container */
+            width: 150px; 
+            height: 80px; 
             margin: 0 20px;
             filter: grayscale(1) opacity(0.6);
             transition: filter 0.3s ease;
@@ -301,28 +350,25 @@
         }
         .tech-stack-item img,
         .tech-stack-item svg {
-            width: 48px; /* 3rem */
-            height: 48px; /* 3rem */
+            width: 48px;
+            height: 48px;
         }
         @keyframes scroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
         }
 
-        /* ---------------------------------------------------- */
         /* Profile Card Animation */
-        /* ---------------------------------------------------- */
         @keyframes ultraSubtleFloat {
             0% { transform: translateY(0px) rotateX(0deg); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.1); }
             50% { transform: translateY(-8px) rotateX(1deg); box-shadow: 0 20px 40px rgba(45, 212, 191, 0.3); }
             100% { transform: translateY(0px) rotateX(0deg); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.1); }
         }
 
-        /* Profile Card Styles */
         .card {
             width: 280px;
             height: 280px;
-            background: rgba(255, 255, 255, 0.05); /* Glassmorphic background */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 32px;
             padding: 3px;
@@ -330,13 +376,11 @@
             box-shadow: #00000030 0px 70px 30px -50px;
             transition: all 0.5s ease-in-out;
             border: 1px solid rgba(255, 255, 255, 0.1);
-           
             animation: ultraSubtleFloat 8s ease-in-out infinite;
-            perspective: 1000px; /* Enable 3D perspective */
-            transform-style: preserve-3d; /* Enable 3D space */
+            perspective: 1000px;
+            transform-style: preserve-3d;
         }
        
-        /* Enhanced hover effect with 3D tilt and stronger glow */
         .card:hover {
             transform: rotateX(2deg) rotateY(2deg) scale(1.02);
             border-top-left-radius: 55px;
@@ -353,13 +397,13 @@
         }
 
         .card .mail svg {
-            stroke: #2DD4BF; /* Teal */
+            stroke: #2DD4BF;
             stroke-width: 2px;
             transition: all 0.3s ease;
         }
 
         .card .mail:hover svg {
-            stroke: #FFFFFF; /* White on hover */
+            stroke: #FFFFFF;
         }
 
         .card .profile-pic {
@@ -370,7 +414,7 @@
             left: 3px;
             border-radius: 29px;
             z-index: 1;
-            border: 0px solid #2DD4BF; /* Teal */
+            border: 0px solid #2DD4BF;
             overflow: hidden;
             transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
         }
@@ -388,7 +432,7 @@
             bottom: 3px;
             left: 3px;
             right: 3px;
-            background: rgba(45, 212, 191, 0.1); /* Teal glass */
+            background: rgba(45, 212, 191, 0.1);
             backdrop-filter: blur(5px);
             top: 80%;
             border-radius: 29px;
@@ -432,7 +476,7 @@
 
         .card .bottom .bottom-bottom .social-links-container {
             display: flex;
-            gap: 0.75rem; /* 12px */
+            gap: 0.75rem;
         }
 
         .card .bottom .bottom-bottom .social-links-container a {
@@ -442,7 +486,7 @@
             transform: scale(1.2);
         }
         .card .bottom .bottom-bottom .social-links-container a:hover svg {
-            fill: #2DD4BF; /* Teal on hover */
+            fill: #2DD4BF;
         }
         .card .bottom .bottom-bottom .social-links-container svg {
             height: 20px;
@@ -453,7 +497,7 @@
 
         .card .bottom .bottom-bottom .button {
             background: white;
-            color: #115E59; /* Dark Teal */
+            color: #115E59;
             border: none;
             border-radius: 20px;
             font-size: 0.7rem;
@@ -465,7 +509,7 @@
         }
 
         .card .bottom .bottom-bottom .button:hover {
-            background: #2DD4BF; /* Teal */
+            background: #2DD4BF;
             color: black;
         }
 
@@ -483,7 +527,7 @@
             left: 10px;
             border-radius: 50%;
             z-index: 3;
-            border: 7px solid #2DD4BF; /* Teal */
+            border: 7px solid #2DD4BF;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px 0px;
             transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
         }
@@ -494,16 +538,12 @@
         }
 
         .card:hover .profile-pic img {
-            transform: scale(1); /* Stops the zoom */
-            object-position: center center; /* Keeps the image centered */
+            transform: scale(1);
+            object-position: center center;
             transition: all 0.5s ease-in-out 0.5s;
         }
-        /* End Profile Card Styles */
 
-
-        /* ---------------------------------------------------- */
-        /* UPDATED: Modal Styles (Glass Effect & New Animation) */
-        /* ---------------------------------------------------- */
+        /* Modal Styles */
         @keyframes modalEnter {
             from { opacity: 0; transform: scale(0.95) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
@@ -521,8 +561,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Lighter backdrop */
-            backdrop-filter: blur(4px); /* Subtle blur behind modal */
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -537,8 +577,8 @@
         }
 
         .modal-content {
-            background: rgba(17, 17, 17, 0.85); /* Semi-transparent base */
-            backdrop-filter: blur(20px); /* Strong glass effect */
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 2rem;
@@ -558,7 +598,6 @@
             animation: modalEnter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards, pulseGlow 4s ease-in-out infinite alternate 0.4s;
         }
 
-        /* Themed contact links */
         .contact-link-modal {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -569,17 +608,16 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Platform Theming */
         .mail-theme:hover { 
             border-color: rgba(45, 212, 191, 0.5); 
             background: rgba(45, 212, 191, 0.1);
         }
         .linkedin-theme:hover { 
-            border-color: rgba(37, 99, 235, 0.5); /* Blue-600 */
+            border-color: rgba(37, 99, 235, 0.5);
             background: rgba(37, 99, 235, 0.1);
         }
         .instagram-theme:hover { 
-            border-color: rgba(217, 70, 239, 0.5); /* Violet-500 */
+            border-color: rgba(217, 70, 239, 0.5);
             background: rgba(217, 70, 239, 0.1);
         }
 
@@ -589,37 +627,41 @@
         .contact-link-modal:hover .arrow-icon {
             transform: translateX(5px);
         }
-        /* --- END UPDATED: Modal Styles --- */
 
-        /* ---------------------------------------------------- */
-        /* NEW: Notification Toast Styles (FIXED PERSISTENCE) */
-        /* ---------------------------------------------------- */
+        /* Notification Toast Styles */
         .toast-container {
             position: fixed;
-            bottom: 20px; /* CHANGED */
-            left: 20px; /* CHANGED */
+            bottom: 20px; /* Desktop Position */
+            left: 20px;
             z-index: 9000;
             display: flex;
             flex-direction: column;
             gap: 10px;
             pointer-events: none; 
         }
-       
-        /* Keyframe that handles Slide-in, 10s Hold, and Slide-out (0.4s each) */
-        @keyframes toastFullLife {
-            0% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
-            4% { transform: translateX(0); opacity: 1; } /* 0.4s in (4% of 10s) */
-            96% { transform: translateX(0); opacity: 1; } /* Hold */
-            100% { transform: translateX(-120%); opacity: 0; } /* CHANGED */
+
+        /* MOD: Adjusted Mobile position to avoid overlapping the bottom nav */
+        @media (max-width: 768px) {
+            .toast-container {
+                bottom: 110px; /* Moved up to clear the new floating nav */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                align-items: center;
+            }
         }
        
-        /* Animation for the shrinking timer bar */
+        @keyframes toastFullLife {
+            0% { transform: translateX(-120%); opacity: 0; }
+            4% { transform: translateX(0); opacity: 1; }
+            96% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(-120%); opacity: 0; }
+        }
+       
         @keyframes timerBar {
             from { width: 100%; }
             to { width: 0%; }
         }
-       
-       
        
         .toast {
             position: relative;
@@ -633,7 +675,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(45, 212, 191, 0.1);
             color: #EAEAEA;
             font-weight: 500;
-            /* Use a single 10s animation for entire life cycle */
             animation: toastFullLife 10s forwards; 
             pointer-events: auto;
             cursor: pointer;
@@ -645,10 +686,9 @@
             bottom: 0;
             left: 0;
             height: 3px;
-            background-color: #2DD4BF; /* Teal color */
+            background-color: #2DD4BF;
             width: 100%;
             transform-origin: left;
-            /* Timer starts immediately on show and runs for 10s */
             animation: timerBar 10s linear forwards; 
         }
 
@@ -657,21 +697,43 @@
             font-weight: 600;
             text-decoration: underline;
         }
+        
+        /* MOD: Close Button for Toast */
+        .toast-close-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            color: #9CA3AF;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 20;
+            transition: color 0.2s ease;
+        }
+        .toast-close-btn:hover {
+            color: white;
+        }
 
-        /* ---------------------------------------------------- */
-        /* NEW: Sticky Bottom Nav for Mobile */
-        /* ---------------------------------------------------- */
+        /* MOD: Updated Sticky Bottom Nav for Mobile */
         .bottom-nav-sticky {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 50; /* Match header z-index */
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 0.5rem; /* 12px top/bottom, 8px left/right */
+            bottom: 20px; /* Floating above bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            z-index: 50;
+            background-color: rgba(10, 10, 10, 0.75); /* Glass opacity */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 2rem; /* Rounded corners */
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
 
         .bottom-nav-link {
@@ -680,9 +742,9 @@
             align-items: center;
             justify-content: center;
             flex: 1;
-            color: #9CA3AF; /* gray-400 */
+            color: #9CA3AF;
             transition: all 0.2s ease;
-            font-size: 0.75rem; /* text-xs */
+            font-size: 0.75rem;
             line-height: 1rem;
             gap: 2px;
             padding: 4px 0;
@@ -691,36 +753,29 @@
         }
         
         .bottom-nav-link:hover {
-            color: #EAEAEA; /* light gray */
+            color: #EAEAEA;
         }
         
-        /* This class will be added by JavaScript */
         .bottom-nav-link.active-nav-icon {
-            color: #2DD4BF; /* teal-400 */
+            color: #2DD4BF;
         }
 
         .bottom-nav-link svg {
-            width: 1.5rem; /* 24px */
-            height: 1.5rem; /* 24px */
+            width: 1.5rem;
+            height: 1.5rem;
         }
 
     </style>
 </head>
-<!-- MODIFICATION: Added padding-bottom for mobile to make space for the new nav bar -->
-<body class="main-container pb-24 md:pb-0">
+<body class="main-container pb-32 md:pb-0">
 
-    <!-- Custom Cursor Elements -->
     <div class="orb"></div>
     <div class="cursor-dot"></div>
 
-    <!-- NEW: Notification Toast Container -->
     <div id="toast-container" class="toast-container">
-        <!-- Toasts will be appended here by JS -->
-    </div>
+        </div>
 
-    <!-- Available for Work Status Indicator -->
-    <!-- MODIFICATION: Added 'hidden md:flex' to hide this on mobile, as it conflicts with the new bottom nav -->
-    <div class="fixed bottom-6 right-6 z-40 hidden md:flex items-center bg-white/5 backdrop-blur-md py-2 px-4 rounded-full border border-white/10 shadow-2xl fade-in-section" style="animation-delay: 1s;">
+    <div class="fixed bottom-28 right-6 md:bottom-6 md:right-6 z-40 flex items-center bg-white/5 backdrop-blur-md py-2 px-4 rounded-full border border-white/10 shadow-2xl fade-in-section" style="animation-delay: 1s;">
         <span class="relative flex h-3 w-3 mr-3">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -728,13 +783,11 @@
         <span class="text-sm font-semibold text-gray-200 tracking-wide">Available for work</span>
     </div>
 
-    <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold tracking-tighter relative z-10">
                 <a href="#home" class="hover:text-teal-400 transition-colors">BRK.</a>
             </div>
-            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 items-center text-sm font-medium uppercase tracking-wider">
                 <a href="#about" class="text-gray-400 hover:text-teal-400 transition-colors relative group">
                     About
@@ -756,25 +809,16 @@
                     Learning
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-400 transition-all group-hover:w-full"></span>
                 </a>
-                <!-- Nav Bar Contact button opens Modal -->
                 <button onclick="openModal()" class="bg-white/10 text-white px-5 py-2 rounded-full hover:bg-teal-400 hover:text-black transition-all duration-300 border border-white/20 hover:border-teal-400">
                     Contact
                 </button>
             </div>
-            
-            <!-- REMOVED: Mobile Menu Button (Hamburger) -->
-            
         </nav>
-        
-        <!-- REMOVED: Mobile Menu Overlay -->
-        
     </header>
 
     <main class="container mx-auto px-8 sm:px-10">
 
-        <!-- Hero Section -->
         <section id="home" class="min-h-screen flex flex-col lg:flex-row items-center justify-between pt-32 pb-20 gap-12 lg:gap-20">
-            <!-- Text Content -->
             <div class="max-w-3xl flex-1 text-center lg:text-left z-10">
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
                     <span class="block animated-gradient-text">Boopathiraja</span>
@@ -783,19 +827,15 @@
                 <p class="mt-6 text-lg md:text-2xl text-gray-300 fade-in-section font-light tracking-wide">
                     Cloud Support Engineer | VDI Admin
                 </p>
-                <div class="mt-12 fade-in-section flex items-center justify-center lg:justify-start gap-4" style="transition-delay: 200ms;">
+                <div class="mt-12 fade-in-section flex items-center justify-center lg:justify-start gap-6" style="transition-delay: 200ms;">
                     <a href="#contact" class="bg-teal-400 text-black font-bold py-2 px-6 md:py-3 md:px-8 rounded-full hover:bg-teal-300 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(45,212,191,0.4)] text-center">
                         Get in Touch
                     </a>
                     
-                    <a href="v2.html"
-                        class="btn-gradient-live font-bold py-2 px-6 md:py-3 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 text-center">
-                        Change Version
-                    </a>
+                    <a href="v2.html" class="btn-neon">Change Version</a>
                 </div>
             </div>
 
-            <!-- New Profile Card with Floating Animation -->
             <div class="fade-in-section flex-shrink-0 z-10" style="transition-delay: 400ms;">
                 <div class="card">
                     <a class="mail" href="mailto:boopathi.kraj@gmail.com">
@@ -805,8 +845,7 @@
                         </svg>
                     </a>
                     <div class="profile-pic">
-                        <!-- Make sure to replace this with your actual image path -->
-                        <img src="Profile.jpg" alt="Boopathiraja Profile">
+                        <img src="Profile.jpg" alt="Boopathiraja Profile" onerror="this.src='https://placehold.co/400x400/1a1a1a/2DD4BF?text=BK'">
                     </div>
                     <div class="bottom">
                         <div class="content">
@@ -822,17 +861,16 @@
                                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
                                 </a>
                                 <a href="https://wa.me/916374871838" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm.789-5.988l4.461-1.16-2.669 3.946-1.792-2.786zm8.374-1.254c.355.011.698.021 1.024.032.326.01.622.031.867.071.682.09.967.318 1.015.421.139.308.187.614.187.614.001.015-.028.539-.34.939-.312.4-.621.75-.824.961-.203.21-.426.389-.672.489-.246.1-.482.132-.7.132-.238 0-.468-.029-.672-.08-.204-.051-.628-.219-1.076-.481-1.127-.666-2.138-1.503-2.94-2.528-.802-1.025-1.41-2.181-1.758-3.239-.348-1.058-.458-2.016-.458-2.016s.032-.54.227-.781c.195-.241.439-.36.591-.45.152-.09.307-.121.463-.121.155 0 .33.001.482.001.152.001.326.001.484.029.172.03.355.109.507.5.152.39.52.961.52.961.029.061.058.121.058.181s-.029.121-.088.181c-.058.061-.137.139-.235.238-.098.098-.196.196-.284.284-.088.088-.157.166-.196.215-.039.049-.068.088-.068.118s.001.137.03.225c.029.088.147.381.382.721.235.34.569.75.998 1.151.429.401.896.721 1.383.961.487.239 1.033.439 1.58.581.547.142 1.152.219 1.804.219.652 0 1.258-.078 1.765-.219.507-.142.915-.36 1.162-.649.247-.29.401-.63.401-.63s.068-.137.127-.294c.058-.157.108-.305.127-.413.019-.108.029-.206.029-.275s-.02-.128-.05-.167c-.029-.039-.098-.088-.196-.147-.098-.058-.235-.127-.421-.215-.187-.088-.432-.177-.732-.275-.3-.098-.679-.147-1.imply-1.1-.147-.421 0-.823.049-1.183.137-.361.088-.673.206-.897.334-.224.128-.411.265-.54.382-.128.118-.216.206-.236.216-.02.01-.058.01-.088-.02-.029-.029-.077-.078-.156-.166-.078-.088-.157-.187-.255-.284-.098-.098-.186-.196-.265-.294-.078-.099-.137-.177-.176-.236-.039-.058-.068-.107-.068-.147s.02-.118.058-.196c.039-.078.118-.187.225-.305.108-.118.236-.235.383-.353.147-.118.305-.216.463-.294.158-.079.317-.148.455-.197.138-.049.255-.088.353-.108.098-.02.186-.029.255-.029.07 0 .15-.001.235-.001z"/></svg>
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm.789-5.988l4.461-1.16-2.669 3.946-1.792-2.786zm8.374-1.254c.355.011.698.021 1.024.032.326.01.622.031.867.071.682.09.967.318 1.015.421.139.308.187.614.187.614.001.015-.028.539-.34.939-.312.4-.621.75-.824.961-.203.21-.426.389-.672.489-.246.1-.482.132-.7.132-.238 0-.468-.029-.672-.08-.204-.051-.628-.219-1.076-.481-1.127-.666-2.138-1.503-2.94-2.528-.802-1.025-1.41-2.181-1.758-3.239-.348-1.058-.458-2.016-.458-2.016s.032-.54.227-.781c.195-.241.439-.36.591-.45.152-.09.307-.121.463-.121.155 0 .33.001.482.001.152.001.326.001.484.029.172.03.355.109.507.5.152.39.52.961.52.961.029.061.058.121.058.181s-.029.121-.088.181c-.058.061-.137.139-.235.238-.098.098-.196.196-.284.284-.088.088-.157.166-.196.215-.039.049-.068.088-.068.118s.001.137.03.225c.029.088.147.381.382.721.235.34.569.75.998 1.151.429.401.896.721 1.383.961.487.239 1.033.439 1.58.581.547.142 1.152.219 1.804.219.652 0 1.258-.078 1.765-.219.507-.142.915-.36 1.162-.649.247-.29.401-.63.401-.63s.068-.137.127-.294c.058-.157.108-.305.127-.413.019-.108.029-.206.029-.275s-.02-.128-.05-.167c-.029-.039-.098-.088-.196-.147-.098-.058-.235-.127-.421-.215-.187-.088-.432-.177-.732-.275-.3-.098-.679-.147-1.1-.147-.421 0-.823.049-1.183.137-.361.088-.673.206-.897.334-.224.128-.411.265-.54.382-.128.118-.216.206-.236.216-.02.01-.058.01-.088-.02-.029-.029-.077-.078-.156-.166-.078-.088-.157-.187-.255-.284-.098-.098-.186-.196-.265-.294-.078-.099-.137-.177-.176-.236-.039-.058-.068-.107-.068-.147s.02-.118.058-.196c.039-.078.118-.187.225-.305.108-.118.236-.235.383-.353.147-.118.305-.216.463-.294.158-.079.317-.148.455-.197.138-.049.255-.088.353-.108.098-.02.186-.029.255-.029.07 0 .15-.001.235-.001z"/></svg>
                                 </a>
                             </div>
-                            <a href="https://drive.google.com/file/d/1t0XoCMZDm_eoiZul97oqBeagjFXkinRw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button">Download CV</a>
+                            <a href="https://drive.google.com/file/d/1Pw8r9W9EuxRlh3yJXrGCye0BM8IYZ753/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button">Download CV</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section (SWAPPED TO BE HIGHER) -->
         <section id="about" class="py-20 md:py-32">
              <div class="text-center mb-16 fade-in-section">
                  <h2 class="text-4xl md:text-5xl font-bold section-title">About Me</h2>
@@ -873,13 +911,11 @@
              </div>
         </section>
 
-        <!-- Experience Section (SWAPPED UP) -->
         <section id="experience" class="py-20 md:py-32">
             <div class="text-center mb-16 fade-in-section">
                 <h2 class="text-4xl md:text-5xl font-bold section-title">Experience</h2>
             </div>
             <div class="max-w-4xl mx-auto">
-                <!-- Experience 1 -->
                 <div class="experience-block rounded-2xl p-6 sm:p-10 fade-in-section">
                     <div class="flex flex-col md:flex-row justify-between mb-8">
                         <div>
@@ -936,14 +972,12 @@
             </div>
         </section>
 
-        <!-- Key Achievements Section (SWAPPED DOWN) -->
         <section id="achievements" class="py-20 md:py-32">
             <div class="text-center mb-16 fade-in-section">
                 <h2 class="text-4xl md:text-5xl font-bold section-title">Key Achievements</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 stagger-children">
-                <!-- Achievement 1 -->
                 <div class="project-card p-8 rounded-2xl flex flex-col">
                     <div class="mb-auto">
                         <div class="text-teal-400 mb-4">
@@ -960,7 +994,6 @@
                     </div>
                 </div>
 
-                <!-- Achievement 2 -->
                 <div class="project-card p-8 rounded-2xl flex flex-col">
                     <div class="mb-auto">
                         <div class="text-teal-400 mb-4">
@@ -979,7 +1012,6 @@
             </div>
         </section>
 
-        <!-- Tech Stack Section -->
         <section id="tech-stack" class="py-20 md:py-32 overflow-hidden">
             <div class="text-center mb-12 fade-in-section">
                 <span class="inline-block bg-white/10 text-white text-sm font-semibold px-4 py-2 rounded-full uppercase tracking-widest">
@@ -988,7 +1020,6 @@
             </div>
             <div class="tech-stack-container fade-in-section">
                 <div class="tech-stack-marquee">
-                    <!-- Icons Set 1 -->
                     <div class="tech-stack-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" title="Microsoft Azure" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=AZ'" />
                     </div>
@@ -1006,6 +1037,11 @@
                     </div>
                     <div class="tech-stack-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=PY'" />
+                    </div>
+                    <div class="tech-stack-item">
+                        <svg class="text-white" viewBox="0 0 24 24" fill="currentColor" width="48" height="48" title="GitHub">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
                     </div>
                     <div class="tech-stack-item">
                         <svg class="text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Troubleshooting"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
@@ -1014,7 +1050,6 @@
                         <svg class="text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Terminal"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                     </div>
                    
-                    <!-- Icons Set 2 (Duplicate for seamless loop) -->
                     <div class="tech-stack-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" title="Microsoft Azure" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=AZ'" />
                     </div>
@@ -1032,6 +1067,11 @@
                     </div>
                     <div class="tech-stack-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=PY'" />
+                    </div>
+                    <div class="tech-stack-item">
+                        <svg class="text-white" viewBox="0 0 24 24" fill="currentColor" width="48" height="48" title="GitHub">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
                     </div>
                     <div class="tech-stack-item">
                         <svg class="text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Troubleshooting"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
@@ -1043,14 +1083,12 @@
             </div>
         </section>
        
-        <!-- Skills Section -->
         <section id="skills" class="py-20 md:py-32 bg-white/[0.02] -mx-6 px-6">
              <div class="text-center mb-16 fade-in-section">
                  <h2 class="text-4xl md:text-5xl font-bold section-title">Technical Skills</h2>
              </div>
              <div class="max-w-6xl mx-auto">
                  
-                 <!-- Cloud & Virtualization Category -->
                  <div class="mb-12 fade-in-section">
                      <h3 class="text-2xl font-bold mb-6 text-teal-400 flex items-center">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1059,22 +1097,14 @@
                          Cloud & Virtualization
                      </h3>
                      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                         <!-- Skill 1 -->
                          <div class="individual-skill-card">
                               <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-6 h-6 mr-3 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=AZ'" />
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Microsoft Azure</span>
                          </div>
-                         <!-- Skill 2 -->
-                         <div class="individual-skill-card">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                             <span class="text-gray-300 font-medium text-sm sm:text-base">Azure Active Directory</span>
-                         </div>
-                          <!-- Skill 3 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Cloud Computing</span>
                          </div>
-                          <!-- Skill 4 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">VM Provisioning</span>
@@ -1082,7 +1112,6 @@
                      </div>
                  </div>
 
-                 <!-- Admin & Support Category -->
                  <div class="mb-12 fade-in-section">
                      <h3 class="text-2xl font-bold mb-6 text-teal-400 flex items-center">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1092,22 +1121,18 @@
                          Admin & Support
                      </h3>
                      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                         <!-- Skill 1 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Active Directory</span>
                          </div>
-                         <!-- Skill 2 -->
                          <div class="individual-skill-card">
                              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-orange-500" viewBox="0 0 24 24" fill="currentColor"><path d="M11.5 3v8.5H3V3h8.5zm0 18H3v-8.5h8.5V21zm1-18H21v8.5h-8.5V3zm8.5 18h-8.5v-8.5H21V21z"/></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Microsoft 365</span>
                          </div>
-                          <!-- Skill 3 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Incident Mgmt (L1)</span>
                          </div>
-                          <!-- Skill 4 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">VDI Troubleshooting</span>
@@ -1115,7 +1140,6 @@
                      </div>
                  </div>
 
-                 <!-- Tooling & OS Category -->
                  <div class="fade-in-section">
                      <h3 class="text-2xl font-bold mb-6 text-teal-400 flex items-center">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1124,33 +1148,41 @@
                          Tooling & OS
                      </h3>
                      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                         <!-- Skill 1 -->
                          <div class="individual-skill-card">
                               <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="w-6 h-6 mr-3 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=WIN'" />
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Windows Server</span>
                          </div>
-                         <!-- Skill 2 -->
                          <div class="individual-skill-card">
                               <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="w-6 h-6 mr-3 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=LIN'" />
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Linux</span>
                          </div>
-                          <!-- Skill 3 -->
                          <div class="individual-skill-card">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Azure Serial Console</span>
                          </div>
-                          <!-- Skill 4 -->
                          <div class="individual-skill-card">
                               <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-6 h-6 mr-3 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a1a1a/2DD4BF?text=PY'" />
                              <span class="text-gray-300 font-medium text-sm sm:text-base">Python</span>
                          </div>
+                            <div class="individual-skill-card">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span class="text-gray-300 font-medium text-sm sm:text-base">GitHub</span>
+                            </div>
+
+                            <div class="individual-skill-card">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <span class="text-gray-300 font-medium text-sm sm:text-base">AI Tools</span>
+                            </div>  
                      </div>
                  </div>
 
              </div>
         </section>
        
-        <!-- Education Section -->
         <section id="education" class="py-20 md:py-32">
             <div class="max-w-3xl mx-auto fade-in-section text-center">
                  <h3 class="text-3xl md:text-4xl font-bold mb-10 flex items-center justify-center">
@@ -1168,7 +1200,6 @@
             </div>
         </section>
 
-        <!-- Coursework Section (Formerly Certifications) -->
         <section id="coursework" class="py-20 md:py-32 bg-white/[0.02] -mx-6 px-6">
              <div class="max-w-3xl mx-auto fade-in-section text-center">
                  <h3 class="text-3xl md:text-4xl font-bold mb-10 flex items-center justify-center">
@@ -1190,17 +1221,13 @@
             </div>
         </section>
 
-        <!-- Contact Section (Interactive Chat - RENAMED TO "Let's Discuss") -->
         <section id="contact" class="py-20 md:py-32 text-center relative">
-            <!-- Decorative background element -->
             <div class="absolute inset-0 opacity-30 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.05) 0%, transparent 70%);"></div>
            
             <div class="max-w-3xl mx-auto relative z-10 px-4">
                 <h2 class="text-4xl md:text-5xl font-bold section-title mb-16 fade-in-section">Let's Discuss</h2>
                
-                <!-- Chat Container -->
                 <div id="chat-interface" class="bg-[#111] rounded-3xl border border-white/10 shadow-2xl overflow-hidden text-left fade-in-section mx-auto max-w-2xl">
-                    <!-- Chat Header -->
                     <div class="bg-white/5 p-4 border-b border-white/10 flex items-center">
                         <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
                         <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
@@ -1208,33 +1235,24 @@
                         <span class="text-sm font-medium text-gray-400">Chat with Boopathiraja</span>
                     </div>
 
-                    <!-- Chat Messages Area -->
                     <div id="chat-messages" class="chat-container p-6 space-y-6 min-h-[500px]">
-                        <!-- Messages will be inserted here by JS -->
-                    </div>
+                        </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Resume Preview Section -->
         <section id="resume-preview" class="py-20 md:py-32 bg-white/[0.02]">
-            <!-- Parent container: Removed h-screen -->
             <div class="w-full flex flex-col items-center justify-center p-4 md:p-8 fade-in-section">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Live Resume Preview</h2>
-               
-                <!-- Iframe Container: Changed to h-[80vh] and removed flex-1/min-h-800px -->
                 <div class="w-full max-w-4xl h-[50vh] shadow-2xl rounded-2xl overflow-hidden border border-white/10">
                     <iframe 
                         class="w-full h-full"
-                        src="https://drive.google.com/file/d/1t0XoCMZDm_eoiZul97oqBeagjFXkinRw/preview" 
+                        src="https://drive.google.com/file/d/1Pw8r9W9EuxRlh3yJXrGCye0BM8IYZ753/preview" 
                         frameborder="0">
                     </iframe>
                 </div>
-
-                <!-- Open Resume Button -->
                 <a 
-                  href="https://drive.google.com/file/d/1t0XoCMZDm_eoiZul97oqBeagjFXkinRw/view?usp=sharing" 
+                  href="https://drive.google.com/file/d/1Pw8r9W9EuxRlh3yJXrGCye0BM8IYZ753/view?usp=sharing" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   class="group flex-shrink-0 flex items-center justify-center px-8 py-4 mt-10 bg-teal-500 hover:bg-teal-400 text-black text-lg font-bold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
@@ -1253,10 +1271,8 @@
         <p>&copy; 2025 Boopathiraja Kannan. Built with precision.</p>
     </footer>
 
-    <!-- The Contact Modal Popup (UPDATED ELEMENT) -->
     <div id="contact-modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <!-- Close Button -->
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -1269,7 +1285,6 @@
             </p>
 
             <div class="space-y-4">
-                <!-- Email Link (Themed: Teal/Primary) -->
                 <a href="mailto:boopathi.kraj@gmail.com" class="contact-link-modal mail-theme flex items-center p-5 rounded-xl group cursor-pointer">
                     <div class="w-12 h-12 bg-teal-400/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4" /></svg>
@@ -1281,7 +1296,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto text-teal-400 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </a>
 
-                <!-- LinkedIn Link (Themed: Blue) -->
                 <a href="https://linkedin.com/in/raj-boopathi" target="_blank" rel="noopener noreferrer" class="contact-link-modal linkedin-theme flex items-center p-5 rounded-xl group cursor-pointer">
                     <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -1293,7 +1307,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto text-blue-400 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </a>
                
-                <!-- Instagram Link (Themed: Violet/Pink) -->
                 <a href="https://www.instagram.com/im_boopathiraja?igsh=eHRybWpsOHhodndy" target="_blank" rel="noopener noreferrer" class="contact-link-modal instagram-theme flex items-center p-5 rounded-xl group cursor-pointer">
                     <div class="w-12 h-12 bg-fuchsia-500/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-fuchsia-400" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
@@ -1308,30 +1321,25 @@
         </div>
     </div>
 
-    <!-- NEW: Sticky Bottom Nav Bar HTML -->
-    <nav class="bottom-nav-sticky flex items-center justify-around md:hidden">
-        <!-- Home -->
+    <nav class="bottom-nav-sticky md:hidden">
         <a href="#home" class="bottom-nav-link active-nav-icon" data-section="home" aria-label="Home">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a.75.75 0 011.06 0l8.955 8.955M3.75 11.25V21h6V15h3v6h6V11.25M21.75 12l-9.75-9.75L2.25 12" />
             </svg>
             <span class="font-medium">Home</span>
         </a>
-        <!-- About -->
         <a href="#about" class="bottom-nav-link" data-section="about" aria-label="About Me">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A18.75 18.75 0 0112 22.5c-5.523 0-10.434-2.25-14.001-5.906" />
             </svg>
             <span class="font-medium">About</span>
         </a>
-        <!-- Experience -->
         <a href="#experience" class="bottom-nav-link" data-section="experience" aria-label="Experience">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.05c0 .621-.504 1.125-1.125 1.125H5.125c-.621 0-1.125-.504-1.125-1.125v-4.05M20.25 14.15c.621 0 1.125-.504 1.125-1.125v-4.05c0-.621-.504-1.125-1.125-1.125h-3.75M3.75 14.15c-.621 0-1.125-.504-1.125-1.125v-4.05c0-.621.504-1.125 1.125-1.125h3.75m0-3.75h9.75c.621 0 1.125.504 1.125 1.125v4.05c0 .621-.504 1.125-1.125 1.125h-9.75c-.621 0-1.125-.504-1.125-1.125v-4.05c0-.621.504-1.125 1.125-1.125z" />
             </svg>
             <span class="font-medium">Work</span>
         </a>
-        <!-- Skills -->
         <a href="#skills" class="bottom-nav-link" data-section="skills" aria-label="Skills">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5m-15 0a7.5 7.5 0 1115 0m-15 0H3m18 0h-1.5" />
@@ -1339,7 +1347,6 @@
             </svg>
             <span class="font-medium">Skills</span>
         </a>
-        <!-- Contact (Modal) -->
         <button onclick="openModal()" class="bottom-nav-link" aria-label="Open Contact Modal">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -1352,91 +1359,85 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
            
-            // --- Toast Notification Logic (FIXED) ---
+            // --- Toast Notification Logic ---
             const toastContainer = document.getElementById('toast-container');
-            // Total animation duration (10s)
             const TOAST_DURATION = 10000; 
+
+            // MOD: Added global removeToast function for the X button
+            window.removeToast = function(id) {
+                const toastEl = document.getElementById(id);
+                if (toastEl) {
+                    // Force slideOut animation
+                    toastEl.style.animation = 'slideOut 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards';
+                    // Stop timer
+                    const timerBar = toastEl.querySelector('.toast-timer');
+                    if (timerBar) timerBar.style.animationPlayState = 'paused';
+                    // Remove after animation
+                    setTimeout(() => toastEl.remove(), 400);
+                }
+            };
 
             function showToast(messageHtml, delayBeforeShow = 0) {
                 setTimeout(() => {
                     const toastId = 'toast-' + Date.now();
                    
+                    // MOD: Added Close Button to Template
                     const toastHTML = `
                         <div id="${toastId}" class="toast">
-                            ${messageHtml}
+                            <button onclick="window.removeToast('${toastId}')" class="toast-close-btn" aria-label="Close notification">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                            <div class="pr-6">
+                                ${messageHtml}
+                            </div>
                             <div class="toast-timer"></div>
                         </div>
                     `;
                    
-                    // Add new toast
                     toastContainer.insertAdjacentHTML('afterbegin', toastHTML);
                     const toastEl = document.getElementById(toastId);
 
-                    // Re-attach cursor effects
                     if (window.attachCursorEffects) window.attachCursorEffects();
                    
-                    // --- Custom Removal Logic for Interactive Toasts ---
+                    // Custom interactivity for rewards
                     if (messageHtml.includes('reward')) {
-                        // Make the whole toast clickable to scroll/remove
                         const clickHandler = (e) => {
+                            // Don't trigger if clicking the close button
+                            if (e.target.closest('.toast-close-btn')) return;
+
                             e.preventDefault();
-                            // Only trigger scroll if the click target isn't already a link (to avoid double handling)
                             document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                            removeToast(toastId);
+                            window.removeToast(toastId);
                         };
 
                         toastEl.addEventListener('click', clickHandler);
-                       
-                        // Ensure anchor links inside toast also trigger removal and scroll
                         const link = toastEl.querySelector('a');
                         if (link) link.addEventListener('click', clickHandler);
                     }
 
-                    // --- Automatic Removal after Full Animation ---
-                    // The CSS animation runs for 10s (slide in, hold, slide out)
-                    // We remove the element from the DOM just after the animation completes (10s + 0.5s safety)
+                    // Auto removal
                     setTimeout(() => {
-                        if (toastEl) toastEl.remove();
+                        if (document.getElementById(toastId)) {
+                            window.removeToast(toastId);
+                        }
                     }, TOAST_DURATION + 500); 
                 }, delayBeforeShow);
             }
            
-            // Function to manually remove a toast (used on click/interactivity)
-            function removeToast(id) {
-                const toastEl = document.getElementById(id);
-                if (toastEl) {
-                    // 1. Force the slideOut animation to begin immediately (0.4s duration)
-                    toastEl.style.animation = 'slideOut 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards';
-                   
-                    // 2. Also stop the timer bar immediately
-                    const timerBar = toastEl.querySelector('.toast-timer');
-                    if (timerBar) timerBar.style.animationPlayState = 'paused';
-
-                    // 3. Remove from DOM after slideOut completes
-                    setTimeout(() => toastEl.remove(), 400);
-                }
-            }
-           
-            // Function to run the sequence of toasts
             function runToastSequence() {
-                // Clear any existing toasts before running a new sequence
                 toastContainer.innerHTML = ''; 
-               
-                // Toast 1: Appears at 0.5s
                 showToast('👋 Welcome to my site! Glad you dropped by. 🎉', 500);
-               
-                // Toast 2: Appears 3.5 seconds later (at 4.0s total delay)
                 showToast('🎁 Congratulations! You\'ve found an exciting reward! Want to know? <a href="#contact">Let\'s connect!</a> 😜', 4000);
             }
            
-            // 1. Run once immediately on load
             runToastSequence(); 
-
-            // 2. Set interval to repeat the sequence every 60 seconds (60000 ms)
             setInterval(runToastSequence, 180000);
             // --- END Toast Notification Logic ---
 
-            // --- Modal Functions (RETAINED) ---
+
+            // --- Modal Functions ---
             const modal = document.getElementById('contact-modal');
 
             window.openModal = function() {
@@ -1452,15 +1453,13 @@
                 }
             }
 
-            // Close modal on escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     closeModal();
                 }
             });
 
-
-            // Interactive Orb & Cursor Logic (RETAINED)
+            // Interactive Orb & Cursor Logic
             const orb = document.querySelector('.orb');
             const dot = document.querySelector('.cursor-dot');
             let mouseX = 0, mouseY = 0;
@@ -1493,7 +1492,7 @@
             }
             animateCursor();
 
-            // Animate Hero Text on Load (RETAINED)
+            // Animate Hero Text on Load
             const heroLines = document.querySelectorAll('.hero-text-reveal-line');
             if (heroLines.length > 0) {
                 let totalDelay = 0.2;
@@ -1514,10 +1513,9 @@
                 });
             }
 
-            // Handle links and buttons for cursor effect (RETAINED)
             if (!isTouchDevice) {
                 window.attachCursorEffects = () => {
-                    const interactiveElements = document.querySelectorAll('a, button, .project-card, .experience-block, .skill-card, .education-card, .cert-card, .cursor-pointer, .individual-skill-card, .quick-reply-btn, .contact-link-modal, .toast, .bottom-nav-link');
+                    const interactiveElements = document.querySelectorAll('a, button, .project-card, .experience-block, .skill-card, .education-card, .cert-card, .cursor-pointer, .individual-skill-card, .quick-reply-btn, .contact-link-modal, .toast, .bottom-nav-link, .toast-close-btn');
                     interactiveElements.forEach(el => {
                         if (el.dataset.cursorAttached) return; 
                        
@@ -1543,7 +1541,7 @@
                 window.attachCursorEffects();
             }
 
-            // Sticky Header Logic (RETAINED)
+            // Sticky Header Logic
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
@@ -1553,9 +1551,7 @@
                 }
             });
 
-            // REMOVED: Mobile Menu Toggle Logic
-            
-            // --- NEW: Bottom Nav Active State Logic ---
+            // Bottom Nav Active State Logic
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.bottom-nav-link[data-section]');
 
@@ -1563,11 +1559,9 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
-                        // Remove active from all
                         navLinks.forEach(link => {
                             link.classList.remove('active-nav-icon');
                         });
-                        // Add active to the correct one
                         const activeLink = document.querySelector(`.bottom-nav-link[data-section="${id}"]`);
                         if (activeLink) {
                             activeLink.classList.add('active-nav-icon');
@@ -1578,15 +1572,13 @@
 
             const sectionObserver = new IntersectionObserver(observerCallback, {
                 root: null,
-                threshold: 0.3, // 30% of the section must be visible
-                rootMargin: "-20% 0px -50% 0px" // Triggers when section is in the middle 30% of the viewport
+                threshold: 0.3,
+                rootMargin: "-20% 0px -50% 0px"
             });
 
             sections.forEach(sec => sectionObserver.observe(sec));
-            // --- END: Bottom Nav Active State Logic ---
 
-
-            // Intersection Observer for Fade-in Animations (RETAINED)
+            // Intersection Observer for Fade-in Animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -1606,14 +1598,12 @@
                 observer.observe(section);
             });
 
-
             // =========================================
             // CHAT INTERFACE LOGIC
             // =========================================
             const chatMessages = document.getElementById('chat-messages');
             let chatStarted = false;
 
-            // NEW: Function to display contact card in chat
             function addContactCardMessage() {
                 const messageHTML = `
                     <div class="flex items-start message-enter">
@@ -1623,21 +1613,18 @@
                         <div class="bg-white/5 rounded-2xl rounded-tl-sm p-4 text-gray-200 max-w-[85%] leading-relaxed shadow-sm space-y-3">
                             <p class="text-white font-bold text-lg mb-2 border-b border-white/10 pb-2">Connect Directly</p>
                            
-                            <!-- Email -->
                             <a href="mailto:boopathi.kraj@gmail.com" class="flex items-center p-2 rounded-lg bg-white/5 hover:bg-teal-500/20 transition-colors border border-white/10">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4" /></svg>
                                 <span class="text-sm break-all">boopathi.kraj@gmail.com</span>
                             </a>
 
-                            <!-- LinkedIn -->
                             <a href="https://linkedin.com/in/raj-boopathi" target="_blank" rel="noopener noreferrer" class="flex items-center p-2 rounded-lg bg-white/5 hover:bg-blue-500/20 transition-colors border border-white/10">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mr-2 flex-shrink-0" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                                 <span class="text-sm">LinkedIn Profile</span>
                             </a>
                            
-                            <!-- Instagram -->
                             <a href="https://www.instagram.com/im_boopathiraja?igsh=eHRybWpsOHhodndy" target="_blank" rel="noopener noreferrer" class="flex items-center p-2 rounded-lg bg-white/5 hover:bg-fuchsia-500/20 transition-colors border border-white/10">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-400 mr-2 flex-shrink-0" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-400 mr-2 flex-shrink-0" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
                                 <span class="text-sm">Instagram</span>
                             </a>
                         </div>
@@ -1648,7 +1635,6 @@
                 if (window.attachCursorEffects) window.attachCursorEffects(); 
             }
 
-            // Start Chat when section is visible
             const chatObserver = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && !chatStarted) {
                     chatStarted = true;
@@ -1690,7 +1676,6 @@
                 await new Promise(resolve => setTimeout(resolve, delay));
                 removeTypingIndicator(typingId);
 
-                // Simple Markdown-style bold parsing
                 const formattedContent = htmlContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
                 const messageHTML = `
@@ -1749,9 +1734,7 @@
                 });
             }
 
-            // --- Enhanced Chat Flow (UPDATED CONTACT) ---
             async function startChatFlow() {
-                // 1. Greeting & Intro
                 await addBotMessage("Hi! I'm <span class='animated-gradient-text'>Boopathiraja</span>, Great to see you here!.", 1000);
                 await addBotMessage("I completed my **BE CSE** in 2024 with the mindset to build something meaningful in the tech industry.", 1500);
                 await addBotMessage("Want to know more?", 1000);
@@ -1782,10 +1765,8 @@
                          addUserMessage(choice3.label);
 
                          if (choice3.value === "contact") {
-                             // UPDATED: Show contact card directly in chat, do NOT open modal.
                              await addBotMessage("Absolutely! Here are the best ways to reach me directly. Remember, the navigation bar's 'Contact' button opens the full pop-up.", 1000);
                              addContactCardMessage();
-                             // FINAL CHANGE: Add ending message
                              await addBotMessage("That's all for this chat, and feel free to contact!", 1500);
                             }
                     }
@@ -1795,6 +1776,4 @@
         });
     </script>
 </body>
-
 </html>
-
