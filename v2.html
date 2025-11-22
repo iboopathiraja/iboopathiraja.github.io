@@ -5,718 +5,331 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Boopathiraja — Portfolio</title>
   <style>
-    /* --- STYLE UPDATE: Light theme is now default --- */
-    :root{
-      --bg: #f6f8fb;
-      --bg-gradient-end: #eaf2f8;
-      --card: #ffffff;
-      --muted:#51606a;
-      --accent:#0ea5a4;
-      --glass: rgba(2,6,23,0.03);
-      --white:#0b1220;
-      --text:#0b1220;
-      --muted-2:#6b7280;
-      --border-color: rgba(0, 0, 0, 0.08);
-      --shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    /* --- LINKEDIN CLONE THEME --- */
+    :root {
+      --bg-body: #f3f2ef;
+      --bg-card: #ffffff;
+      --primary: #0a66c2;
+      --primary-hover: #004182;
+      --text-main: #191919;
+      --text-sub: #666666;
+      --border: #e0dfdc;
+      --divider: #ebebeb;
+      --shadow-card: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+      --radius: 8px;
+      --font-stack: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-    
-    *{box-sizing:border-box}
-    html,body{
-      height:100%;
-      margin:0;
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg-gradient-end) 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-    }
+
+    * { box-sizing: border-box; }
 
     body {
-      overflow-x: hidden;
+      margin: 0;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
     }
 
-    /* Layout */
-    .app{
-      display:grid;
-      grid-template-columns: 280px 1fr 320px;
-      gap:20px;
-      padding:28px;
-      min-height:100vh;
-      align-items:start;
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg-gradient-end) 100%);
+    /* Layout Grid */
+    .app {
+      display: grid;
+      grid-template-columns: 225px 1fr 300px;
+      gap: 24px;
+      max-width: 1128px;
+      margin: 0 auto;
+      padding: 24px 0;
+      min-height: 100vh;
+      align-items: start;
     }
 
     /* Responsive */
-    @media (max-width:1000px){
-      .app{
-        grid-template-columns:1fr;
-        padding:16px
-      }
-      .left,.right{
-        width:100%;
-        height: auto;
-      }
-      .right{
-        order:3;
-      }
-      .middle{
-        order:2;
-      }
-    }
-
-    /* --- Further refinements for small mobile screens --- */
-    @media (max-width: 640px) {
+    @media (max-width: 1000px) {
       .app {
-        padding: 12px;
-      }
-
-      .left-content, .left-links, .left-buttons {
-        padding: 20px;
-      }
-
-      .left-buttons {
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-
-      .post-header {
-        padding: 16px 16px 8px 16px;
-      }
-
-      .post-content {
-        padding: 0 16px 12px 16px;
-      }
-      .post-content h3 {
-        font-size: 18px;
-      }
-      .post-content p, .post-content li {
-        font-size: 14px;
-      }
-
-      .post-actions {
-        padding: 8px 16px;
-      }
-
-      .right {
-        padding: 12px;
-      }
-    }
-
-    /* --- LEFT CARD STYLING --- */
-    .left{
-      position:sticky; 
-      top:28px;
-      background: var(--card);
-      border-radius:16px; 
-      box-shadow: var(--shadow);
-      border:1px solid var(--border-color);
-      padding: 0;
-      overflow: hidden;
-    }
-    
-    .left-image {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3; 
-      object-fit: cover;
-      display: block;
-      background: var(--glass);
-    }
-        
-    .left-content {
-      padding: 6px; 
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    
-    .left h1 {
-      font-size: 23px;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0;
-      line-height: 1.2;
-    }
-    
-    .left .title {
-      font-size: 15px;
-      color: var(--muted);
-      margin-top: -8px;
-    }
-    
-    .availability {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--border-color);
-      padding: 6px 12px;
-      border-radius: 99px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted-2);
-      align-self: flex-start;
-    }
-    
-    .availability-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #22c55e;
-    }
-    
-    .location-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .location-link svg {
-      opacity: 0.7;
-      flex-shrink: 0;
-    }
-    
-    .left-links {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .contact-link-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .contact-link-item svg {
-      flex-shrink: 0;
-      opacity: 0.7;
-    }
-    
-    .left-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 0 20px 20px 20px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 20px;
-    }
-    
-    .btn-primary, .btn-secondary {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--border-color);
-    }
-    
-    .btn-primary {
-      background: var(--text);
-      color: var(--card);
-      border-color: var(--text);
-    }
-    
-    .btn-secondary {
-      background: var(--card);
-      color: var(--text);
-    }
-    .btn-secondary svg {
-      opacity: 0.7;
-    }
-
-    /* Middle feed */
-    .middle{
-      height:auto;
-      overflow:visible;
-      padding:8px 4px;
-    }
-    .post{
-      background: var(--card);
-      border-radius:16px; 
-      margin-bottom:16px; 
-      border:1px solid var(--border-color);
-      box-shadow: var(--shadow); 
-      transform:translateY(6px); 
-      opacity:0; 
-      transition:all 360ms ease;
-      overflow: hidden;
-    }
-    
-    .post-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 20px 24px 12px 24px;
-    }
-    
-    .post-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      object-fit: cover;
-      background: var(--glass);
-    }
-
-    .post-author {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .post-author span {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 400;
-      display: block;
-    }
-    
-    .post-content {
-      padding: 0 24px 16px 24px;
-    }
-    .post-content h3 {
-      margin: 4px 0 10px 0; 
-      color:var(--text); 
-      font-size: 20px;
-    }
-    .post-content p, .post-content li {
-      color:var(--muted);
-      line-height:1.65;
-      font-size: 15px;
-    }
-    .post-content ul {
-      padding-left: 20px;
-      margin: 10px 0;
-    }
-    .post-content p.subhead {
-      font-weight: 600;
-      color: var(--text);
-      margin: 16px 0 8px 0;
-    }
-    
-    .drives-box {
-      background: var(--bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-top: 20px;
-    }
-    .drives-box h4 {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 0;
-      font-size: 16px;
-    }
-    .drives-box ul {
-      margin: 0;
-      padding-left: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .drives-box li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--muted-2);
-    }
-    .drives-box li svg {
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .post-visual {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: var(--glass);
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--muted-2);
-      overflow: hidden;
-    }
-    .post-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .tag{
-      display:inline-block;
-      background:rgba(14,165,164,0.12);
-      color:var(--accent);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      margin-right:8px;
-      margin-top: 4px;
-      margin-bottom: 4px;
-    }
-    
-    .tag-wrapper {
-      margin-top: 16px;
-    }
-
-    .skill-list {
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    @media (min-width: 640px) {
-      .skill-list {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--bg);
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .skill-icon {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
-    }
-
-    .contact-buttons-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    @media (max-width: 640px) {
-      .contact-buttons-wrapper {
         grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 12px;
       }
+      /* FORCE SCROLLING ON MOBILE */
+      .left, .right, .ad-card, .chat-card { 
+        position: static !important; 
+        width: 100%; 
+        top: auto !important;
+        height: auto !important;
+      }
+      .right { display: none; } 
+    }
+    
+    @media (min-width: 600px) and (max-width: 1000px) {
+        .app { grid-template-columns: 300px 1fr; }
+        .right { display: none; }
+    }
+
+    a { text-decoration: none; color: var(--primary); font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    /* --- LEFT CARD --- */
+    .left {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      position: sticky;
+      top: 24px;
+      overflow: hidden;
+      text-align: center;
+      padding: 0;
+      z-index: 1;
+    }
+
+    .left::before {
+      content: '';
+      display: block;
+      height: 60px;
+      background: #a0b4b7;
+      background-image: linear-gradient(45deg, #a0b4b7, #0a66c2);
+    }
+
+    .left-image {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin: -36px auto 12px auto;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .left-content { padding: 0 12px 16px 12px; border-bottom: 1px solid var(--divider); }
+    .left h1 { font-size: 16px; font-weight: 600; margin: 0 0 4px 0; color: var(--text-main); }
+    .left .title { font-size: 12px; color: var(--text-sub); margin-bottom: 12px; line-height: 1.4; }
+    
+    .availability { font-size: 12px; color: var(--text-sub); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .availability-dot { width: 6px; height: 6px; background: #057642; border-radius: 50%; }
+
+    .location-link { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: var(--text-sub); margin-bottom: 4px; }
+    .location-link svg { width: 14px; height: 14px; color: var(--text-sub); }
+
+    .left-links { padding: 12px 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--divider); }
+    .contact-link-item { display: flex; justify-content: space-between; padding: 4px 12px; font-size: 12px; color: var(--text-sub); font-weight: 600; text-decoration: none; }
+    .contact-link-item:hover { background-color: #f3f2ef; text-decoration: underline; }
+    .contact-link-item span { color: var(--text-sub); font-weight: 600; }
+    .contact-link-item svg { display: none; }
+
+    .left-buttons { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .btn-primary, .btn-secondary { display: flex; align-items: center; justify-content: center; padding: 6px 16px; border-radius: 24px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background-color: var(--primary); color: white; border: 1px solid transparent; }
+    .btn-primary:hover { background-color: var(--primary-hover); text-decoration: none;}
+    .btn-secondary { background-color: transparent; color: var(--text-sub); border: 1px solid var(--text-sub); }
+    .btn-secondary:hover { background-color: rgba(0,0,0,0.05); border-color: var(--text-main); color: var(--text-main); text-decoration: none; }
+    
+    /* New Audio Section Styles */
+    .audio-section { padding: 12px; border-top: 1px solid var(--divider); text-align: center; background: #f9fafb; }
+    .audio-label { font-size: 12px; font-weight: 600; color: var(--text-sub); margin-bottom: 8px; }
+    .custom-audio { width: 100%; height: 30px; border-radius: 15px; }
+
+
+    /* --- MIDDLE --- */
+    .middle { padding: 0; }
+
+    .post {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+      padding: 0;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn { from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+
+    .post-header { padding: 12px 16px 8px 16px; display: flex; align-items: flex-start; gap: 12px; }
+    .post-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .post-author { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.2; }
+    .post-author span { display: block; font-size: 12px; color: var(--text-sub); font-weight: 400; margin-top: 2px; }
+    
+    .post-content { padding: 0 16px 8px 16px; font-size: 14px; color: var(--text-main); }
+    .post-content h3 { font-size: 16px; font-weight: 600; margin: 8px 0 8px 0; color: var(--text-main); }
+    .post-content p { margin-bottom: 8px; line-height: 1.5; }
+    .post-content .subhead { font-size: 14px; font-weight: 600; color: var(--text-main); margin-top: 12px; display: block; }
+
+    .drives-box { background: #f9fafb; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-top: 12px; }
+    .drives-box h4 { margin: 0 0 8px 0; font-size: 14px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+    .drives-box ul { margin: 0; padding: 0; list-style: none; }
+    .drives-box li { font-size: 13px; color: var(--text-sub); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .drives-box li svg { width: 16px; height: 16px; color: var(--text-sub); }
+
+    .tag-wrapper { margin: 12px 0; }
+    .tag { display: inline-block; font-size: 12px; color: var(--text-sub); font-weight: 600; margin-right: 8px; }
+    .tag::before { content: "#"; }
+
+    .skill-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0; margin-top: 12px; list-style: none; }
+    .skill-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .skill-icon { width: 22px; height: 22px; flex-shrink: 0; }
+
+    /* Custom Icons - Accurate Brand Colors & Paths */
+    .icon-azure { fill: #0078D4; }
+    .icon-m365 { fill: #503794; } 
+    .icon-linux { fill: #000000; } 
+    .icon-python { fill: #3776AB; } 
+    .icon-github { fill: #181717; }
+    .icon-ai { fill: #8E24AA; }
+    .icon-generic { color: var(--text-sub); }
+
+    /* --- BRANDED CONTACT BUTTONS --- */
+    .contact-buttons-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;
     }
     .btn-contact {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      color: white;
-      transition: all 150ms ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px; border-radius: 24px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.2s;
+      border: none;
+      color: white; 
     }
-    .btn-contact svg {
-      width: 18px;
-      height: 18px;
-      fill: white;
-    }
-    .btn-contact:hover {
-      opacity: 0.85;
-    }
-    .btn-linkedin { background-color: #0A66C2; }
-    .btn-gmail { background-color: #D93025; }
+    .btn-contact:hover { opacity: 0.9; text-decoration: none; }
+    .btn-contact svg { width: 18px; height: 18px; fill: white; }
+
+    .btn-linkedin { background-color: #0077b5; }
+    .btn-gmail { background-color: #db4437; }
     .btn-whatsapp { background-color: #25D366; }
-    .btn-instagram {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    }
+    .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-    .post-actions {
-      display: flex;
-      gap: 8px;
-      padding: 12px 24px;
-      border-top: 1px solid var(--border-color);
-      position: relative;
-      align-items: center;
-      justify-content: space-between;
-    }
+    /* --- ACTION BAR & REACTIONS --- */
+    .post-actions { border-top: 1px solid var(--divider); padding: 4px 12px; display: flex; align-items: center; justify-content: space-between; min-height: 40px; }
+    .like-btn-wrapper { display: flex; align-items: center; position: relative;}
     
-    .like-btn-wrapper {
-      position: relative;
-    }
-
-    .post-reactions {
-      font-size: 13px;
-      color: var(--muted-2);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .post-reactions span:last-child {
-      font-weight: 500;
-    }
-
-    .reactions-popup {
-      position: absolute;
-      bottom: calc(100% + 10px);
-      left: -8px;
-      background: var(--card-2, var(--card));
-      border: 1px solid var(--border-color);
-      border-radius: 99px;
-      padding: 6px 8px;
-      display: flex;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(10px);
-      visibility: hidden;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow);
-      z-index: 10;
-    }
-    
-    .like-btn-wrapper:hover .reactions-popup {
-      opacity: 1;
-      transform: translateY(0);
-      visibility: visible;
-    }
-    
-    .reaction-icon {
-      cursor: pointer;
-      font-size: 20px;
-      transition: transform 100ms ease;
-      line-height: 1;
-    }
-    .reaction-icon:hover {
-      transform: scale(1.2);
-    }
-
     .like-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 0;
-      padding: 8px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--muted-2);
-      font-weight: 600;
-      font-size: 13px;
-      transition: background 150ms ease, color 150ms ease;
+      background: transparent; border: none; display: flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 4px; cursor: pointer; color: var(--text-sub);
+      font-weight: 600; font-size: 14px; transition: background 0.2s;
     }
-    .like-btn:hover {
-      background: var(--glass);
-      color: var(--text);
+    .like-btn:hover { background-color: rgba(0,0,0,0.08); }
+    .like-btn svg { width: 18px; height: 18px; stroke: var(--text-sub); fill: none; }
+    .like-btn.liked { color: var(--primary); }
+    .like-btn.liked svg { stroke: var(--primary); fill: var(--primary); }
+    
+    /* Mixed Icons Display */
+    .post-reactions { font-size: 12px; color: var(--text-sub); display: flex; align-items: center; gap: 4px; }
+    .reaction-stack { display: flex; align-items: center; }
+    .reaction-stack svg { width: 14px; height: 14px; margin-right: -4px; border: 2px solid #fff; border-radius: 50%; background: #fff; }
+    
+    .reactions-popup {
+      position: absolute; bottom: 100%; left: 0; background: white; border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 8px 12px; display: flex; gap: 12px;
+      visibility: hidden; opacity: 0; transition: all 0.2s; margin-bottom: 8px; z-index: 10;
     }
-    .like-btn svg {
-      transition: all 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      stroke: var(--muted-2);
-    }
-    .like-btn:hover svg {
-      stroke: var(--text);
-    }
-    .like-btn.liked {
-      color: var(--accent);
-    }
-    .like-btn.liked svg {
-      fill: var(--accent);
-      stroke: var(--accent);
-      transform: scale(1.1);
-    }
-    .like-btn.liked-love { color: #f91880; }
-    .like-btn.liked-clap { color: #f5a623; }
-    .like-btn.liked-insightful { color: #9333ea; }
+    .like-btn-wrapper:hover .reactions-popup { visibility: visible; opacity: 1; }
+    .reaction-icon { font-size: 20px; cursor: pointer; transition: transform 0.2s; }
+    .reaction-icon:hover { transform: scale(1.3); }
 
-    /* Right chat */
-    .right{
-      position:sticky;
-      top:28px;
-      height:calc(100vh - 56px); 
-      background: var(--card);
-      padding:14px;
-      border-radius:16px; 
-      border:1px solid var(--border-color);
-      box-shadow: var(--shadow);
+    /* --- RIGHT SIDEBAR --- */
+    .right { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+    .chat-card {
+      background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow-card);
+      overflow: hidden; display: flex; flex-direction: column; height: 380px;
     }
-    .chat-window{
-      display:flex;
-      flex-direction:column;
-      height:100%;
+
+    .chat-header {
+      padding: 12px; border-bottom: 1px solid var(--divider); display: flex; align-items: center; gap: 10px; background: #fff;
     }
-    .chat-messages{
-      flex:1;
-      overflow:auto;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    .chat-status { width: 8px; height: 8px; background: #057642; border-radius: 50%; box-shadow: 0 0 0 2px white; position: absolute; bottom: 0; right: 0; }
+
+    .chat-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 12px; background-color: #fff; }
+
+    .bubble { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4; animation: popIn 0.2s ease; }
+    @keyframes popIn { from{transform:scale(0.9);opacity:0} to{transform:scale(1);opacity:1} }
+    .bot { background-color: #f3f2ef; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 2px; }
+    .me { background-color: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+    .quick-actions { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0; }
+    .chip {
+      background: white; border: 1px solid var(--primary); border-radius: 16px; padding: 4px 10px;
+      font-size: 12px; font-weight: 600; color: var(--primary); cursor: pointer; transition: all 0.2s;
+    }
+    .chip:hover { background: rgba(10, 102, 194, 0.1); box-shadow: inset 0 0 0 1px var(--primary); }
+
+    .chat-input-area { padding: 8px 12px; border-top: 1px solid var(--divider); display: flex; gap: 8px; background: #f3f2ef; }
+    .chat-input { flex: 1; border: 1px solid var(--border); border-radius: 20px; padding: 6px 12px; font-size: 13px; outline: none; }
+    .chat-send {
+      background: var(--primary); color: white; border: none; width: 32px; height: 32px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .chat-send svg { width: 16px; height: 16px; fill: white; }
+
+    /* --- AD CARD --- */
+    .ad-card { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 16px; text-align: center; position: relative; }
+    .ad-label { position: absolute; top: 10px; right: 10px; font-size: 10px; color: var(--text-sub); font-weight: 400; }
+    
+    .ad-content { 
+      display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 8px; 
+      transition: opacity 0.3s ease-in-out; /* Smooth JS transition */
     }
     
-    @media (max-width:1000px) {
-      .chat-messages {
-        height: 350px;
-        flex: 0 1 350px;
-      }
+    .ad-img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+    .ad-text-group { text-align: center; }
+    .ad-headline { font-size: 14px; font-weight: 400; color: var(--text-sub); margin-bottom: 6px; }
+    .ad-bold { font-size: 15px; font-weight: 600; color: var(--text-main); display: block; line-height: 1.3; }
+    .ad-cta {
+      margin-top: 8px; background: transparent; border: 1px solid var(--primary); color: var(--primary);
+      border-radius: 24px; padding: 4px 16px; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none;
     }
-
-    @media (max-width: 640px) {
-      .chat-messages {
-        height: 300px;
-      }
-    }
-
-    .bubble{
-      max-width:80%;
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:13px;
-    }
-    .bot{
-      background:rgba(0,0,0,0.03);
-      align-self:flex-start;
-      color:var(--text)
-    }
-    .me{
-      background:linear-gradient(90deg,var(--accent),#7c3aed);
-      color:white;
-      align-self:flex-end
-    }
-    .quick{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:6px
-    }
-    .btn{
-      background:transparent;
-      border:1px solid var(--border-color);
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      color: var(--muted-2)
-    }
-
-    .composer{
-      display:flex;
-      gap:8px;
-      padding-top:8px;
-      align-items:center
-    }
-    .composer input{
-      flex:1;
-      background:transparent;
-      border:1px solid var(--border-color);
-      padding:10px 12px;
-      border-radius:10px;
-      color:var(--text)
-    }
-    .composer button{
-      padding:10px 12px;
-      border-radius:10px;
-      border:0;
-      background:var(--accent);
-      color:#012;
-      cursor:pointer
-    }
-
-    .badge{
-      font-size:12px;
-      color:var(--muted)
-    }
-    
-    .left::-webkit-scrollbar,
-    .middle::-webkit-scrollbar,
-    .chat-messages::-webkit-scrollbar{
-      width:8px
-    }
-    .left::-webkit-scrollbar-thumb,
-    .middle::-webkit-scrollbar-thumb,
-    .chat-messages::-webkit-scrollbar-thumb{
-      background:rgba(0,0,0,0.1);
-      border-radius:6px
-    }
-
-    /* 🔥 FINAL OVERRIDE: On mobile, nothing sticky, everything scrolls */
-    @media (max-width:1000px){
-      .left,
-      .middle,
-      .right{
-        position: static;
-        top: auto;
-      }
-      .middle,
-      .right{
-        height: auto;
-        overflow: visible;
-      }
-    }
+    .ad-cta:hover { box-shadow: inset 0 0 0 1px var(--primary); background: rgba(10,102,194,0.05); }
 
   </style>
 </head>
 <body>
   <div class="app">
-    <!-- LEFT -->
     <aside class="left">
       <img src="Profile.jpg" alt="Boopathiraja Kannan" class="left-image">
-      
       <div class="left-content">
         <h1>Boopathiraja Kannan</h1>
         <div class="title">Tech Enthusiast | VDI Admin</div>
-        
         <div class="availability">
           <span class="availability-dot"></span>
           Available for work
         </div>
-        
         <div class="location-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           <span>Chennai, India</span>
         </div>
       </div>
-      
       <div class="left-links">
         <a href="https://brk.framer.website" target="_blank" class="contact-link-item">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-          <span>brk.framer.website</span>
+          <span>Website</span>
+          <span>brk.framer</span>
         </a>
         <a href="#" class="contact-link-item">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>Phone</span>
           <span>+91 6374871838</span>
         </a>
         <a href="mailto:boopathi.kraj@gmail.com" class="contact-link-item">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Email</span>
           <span>boopathi.kraj@gmail.com</span>
         </a>
       </div>
-      
       <div class="left-buttons">
-        <a href="#" class="btn-primary">Download CV</a>
-        <a href="#contact" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span>Contact</span>
-        </a>
-        <a href="index.html" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20H9v-5"/><path d="M16 21v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5"/><path d="M3 16V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5"/></svg>
-          <span>Change Version</span>
-        </a>
+        <a href="https://drive.google.com/file/d/1Pw8r9W9EuxRlh3yJXrGCye0BM8IYZ753/view?usp=sharing" target="_blank" class="btn-primary">Download CV</a>
+        
+        <a href="#contact" class="btn-secondary">Message</a>
+        <a href="index.html" class="btn-secondary">Change Version</a>
+      </div>
+
+      <!-- AUDIO SECTION -->
+      <div class="audio-section">
+        <div class="audio-label">Hear about me! 🎙️</div>
+        <audio controls class="custom-audio">
+          <source src="intro.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
       </div>
     </aside>
 
-    <!-- MIDDLE (feed) -->
     <main class="middle" id="feed">
-      <!-- About Me Post -->
+      
       <article class="post" id="about">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -729,47 +342,19 @@
         <div class="post-content">
           <h3>About Me</h3>
           <p>Hello! I'm <strong>Boopathiraja Kannan</strong>, working as a VDI Admin at Anunta Technology. I manage and support virtual desktop environments, handle cloud-related operations, and troubleshoot system issues to ensure stable and reliable performance for end users.</p>
-          <p>I enjoy understanding how systems work behind the scenes and finding practical solutions to technical problems. My day-to-day work involves virtualization, Azure support, monitoring environments, and resolving issues before they impact productivity.</p>
-          <p>Outside of work, I like exploring new technologies, upgrading my skills, and learning tools that help me grow in the cloud and infrastructure domain.</p>
-          
           <div class="drives-box">
-            <h4>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.5-3 1.5-4.5 0-1.5-1.5-1.5-3 0-4.5 1.5-1.5 3-1.5 4.5 0 1.5 1.5 1.5 3 0 4.5z"/><path d="m12 15-3-3 4.5-4.5 3 3L12 15z"/><path d="m21.5 16.5-5.5-5.5"/><path d="m5 21 3.5-3.5"/><path d="m16 8 3 3"/></svg>
-              What Drives Me
-            </h4>
+            <h4>What Drives Me</h4>
             <ul>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Cloud & Virtualization Innovation
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Problem Solving & Troubleshooting
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Continuous Learning & Automation
-              </li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Cloud & Virtualization Innovation</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Problem Solving & Troubleshooting</li>
             </ul>
           </div>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
+           <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
         </div>
       </article>
 
-      <!-- Experience -->
       <article class="post" id="experience">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -782,43 +367,22 @@
         <div class="post-content">
           <h3>Professional Experience</h3>
           <p><strong>VDI Admin (Apprentice Trainee) — Anunta Tech</strong><br><span style="font-size: 13px; color: var(--muted-2);">Jan 2025 - Present</span></p>
-          
           <p class="subhead">Key Contributions:</p>
           <ul>
-            <li>Reduced user downtime by managing Azure cloud infrastructure and resolving critical issues like black screens and boot failures to maintain high availability.</li>
-            <li>Resolved complex VDI connectivity, application, and profile issues using Azure Serial Console and remote diagnostics tools.</li>
-            <li>Provisioned 50+ Azure virtual machines, configuring resources to ensure stable and scalable environments for end-users.</li>
-            <li>Collaborated cross-functionally with IT teams to support end-users, contributing to better system reliability and higher user satisfaction.</li>
+            <li>Reduced user downtime by managing Azure cloud infrastructure and resolving critical issues.</li>
+            <li>Resolved complex VDI connectivity and profile issues using Azure Serial Console.</li>
+            <li>Provisioned 50+ Azure virtual machines, ensuring stable environments.</li>
           </ul>
-          <div class="tag-wrapper">
-            <span class="tag">Azure IaaS</span>
-            <span class="tag">AVD</span>
-            <span class="tag">Windows Server</span>
-            <span class="tag">Azure Serial Console</span>
-            <span class="tag">Active Directory</span>
-          </div>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
+          <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
           <div class="post-reactions">
-            <span>👏</span>
+            <div class="reaction-stack"><svg viewBox="0 0 24 24" fill="#0a66c2"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">👍</text></svg><svg viewBox="0 0 24 24" fill="#c37d16"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">👏</text></svg></div>
             <span>50+ reactions</span>
           </div>
         </div>
       </article>
 
-      <!-- Skills -->
       <article class="post" id="skills">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -833,19 +397,15 @@
           <p class="subhead">Cloud & Virtualization</p>
           <ul class="skill-list">
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+              <svg class="skill-icon icon-azure" viewBox="0 0 24 24"><path d="M5.4 3h5.9v5.9H5.4V3zm0 8.4h5.9v5.9H5.4v-5.9zm8.4-8.4h5.9v5.9h-5.9V3zm0 8.4h5.9v5.9h-5.9v-5.9z"/></svg>
               <span>Microsoft Azure</span>
             </li>
-            <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg>
-              <span>Azure Active Directory</span>
-            </li>
              <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+              <svg class="skill-icon icon-azure" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
               <span>Cloud Computing</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6" y1="6" y2="6"/><line x1="6" x2="6" y1="18" y2="18"/></svg>
+              <svg class="skill-icon icon-generic" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6" y1="6" y2="6"/><line x1="6" x2="6" y1="18" y2="18"/></svg>
               <span>VM Provisioning</span>
             </li>
           </ul>
@@ -853,19 +413,19 @@
           <p class="subhead">Admin & Support</p>
           <ul class="skill-list">
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg>
+              <svg class="skill-icon icon-azure" viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 11-5-11-5zm0 18l-9-4.1V12l9 4 9-4v3.9l-9 4.1z"/></svg>
               <span>Active Directory</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg class="skill-icon icon-m365" viewBox="0 0 24 24"><path d="M11.5 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7.5M21 7h-5M21 7l-5 5m5-5v5"/></svg>
               <span>Microsoft 365</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.3 18 9.2 18 8A6 6 0 0 0 6 8c0 1.2.3 2.3 1.5 3.5.7.7 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+              <svg class="skill-icon icon-generic" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
               <span>Incident Mgmt (L1)</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="12" x2="12" y1="16" y2="20"/><line x1="8" x2="16" y1="20" y2="20"/></svg>
+              <svg class="skill-icon icon-generic" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="12" x2="12" y1="16" y2="20"/><line x1="8" x2="16" y1="20" y2="20"/></svg>
               <span>VDI Troubleshooting</span>
             </li>
           </ul>
@@ -873,40 +433,33 @@
           <p class="subhead">Tooling & OS</p>
           <ul class="skill-list">
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="12" x2="12" y1="16" y2="20"/><line x1="8" x2="16" y1="20" y2="20"/></svg>
+              <svg class="skill-icon icon-azure" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.949-1.551L24 0v11.4H10.949V1.898zM0 12.6h9.75v9.451L0 20.699V12.6zm10.949 0H24V24l-13.051-1.898V12.6z"/></svg>
               <span>Windows Server</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 16.5a3.5 3.5 0 0 0-3.16 5.25 3.5 3.5 0 0 0-3.16-5.25L3 16.5v-3.34a3.5 3.5 0 0 0 4.14-2.1l.03-.06a3.5 3.5 0 0 0-2.1-4.14L3 6.84V3.5L7.37 2.25a3.5 3.5 0 0 0 4.26 0L16 3.5v3.34a3.5 3.5 0 0 0-2.1 4.14l.03.06a3.5 3.5 0 0 0 4.14 2.1l4.13 1.29v3.34l-4.84 1.51a3.5 3.5 0 0 0-3.16-5.25z"/></svg>
+              <svg class="skill-icon icon-linux" viewBox="0 0 24 24"><path d="M12 2C9 2 7 3.5 7 6c0 1 .5 2 1 3-1 2-2 4-2 6 0 3 2.5 5 6 5s6-2 6-5c0-2-1-4-2-6 .5-1 1-2 1-3 0-2.5-2-4-5-4z"/></svg>
               <span>Linux</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5zm-2-4h20"/><path d="m12 15-3 3 3 3"/></svg>
+              <svg class="skill-icon icon-generic" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
               <span>Azure Serial Console</span>
             </li>
             <li class="skill-item">
-              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg class="skill-icon icon-python" viewBox="0 0 24 24"><path d="M12 0c-3.3 0-6 2.7-6 6v3h3V6c0-1.7 1.3-3 3-3s3 1.3 3 3v2H9v3h9V6c0-3.3-2.7-6-6-6zM6 9H3c-1.7 0-3 1.3-3 3v6c0 3.3 2.7 6 6 6h3v-3H6c-1.7 0-3-1.3-3-3v-3h6V9z"/></svg>
               <span>Python</span>
+            </li>
+            <li class="skill-item">
+              <svg class="skill-icon icon-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.419-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span>GitHub</span>
+            </li>
+            <li class="skill-item">
+              <svg class="skill-icon icon-ai" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
+              <span>AI Tools</span>
             </li>
           </ul>
         </div>
-        <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-        </div>
       </article>
 
-      <!-- Achievements -->
       <article class="post" id="projects">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -916,7 +469,6 @@
             </div>
           </div>
         </div>
-        
         <div class="post-content">
           <h3>Key Achievements</h3>
           <p><strong>90% Resolution Rate</strong></p>
@@ -934,22 +486,10 @@
           </div>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
+           <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
         </div>
       </article>
 
-      <!-- Contact -->
       <article class="post" id="contact">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -962,7 +502,6 @@
         <div class="post-content">
           <h3>Get in touch</h3>
           <p>I am actively seeking new opportunities in cloud engineering and VDI administration. If you have a role that might be a good fit or just want to network, I'd love to hear from you.</p>
-          
           <div class="contact-buttons-wrapper">
             <a href="https://linkedin.com/in/raj-boopathi" target="_blank" class="btn-contact btn-linkedin">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
@@ -976,29 +515,14 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.45 1.32 4.95L2.06 21.94l5.25-1.38c1.44.8 3.05 1.24 4.73 1.24 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.84 12.3c-.2.5-.83 1.04-1.27 1.1-1.01.15-1.72.14-2.47-.14-.83-.3-1.84-1-3.14-2.26-1.5-1.46-2.5-3.08-2.73-3.48-.23-.4-.03-.6.2-.81.2-.18.44-.45.62-.62.2-.18.28-.3.42-.5.14-.2.1-.38-.04-.55-.14-.17-.67-1.61-.92-2.15-.25-.54-.5-.46-.68-.47-.18-.01-0.38-0.01-0.58-0.01s-0.58.08-0.88.38c-.3.3-1.14 1.1-1.14 2.68s1.17 3.1 1.32 3.3c.15.2 2.38 3.6 5.6 4.9 1.07.43 1.9.68 2.5.86.87.26 1.63.22 2.18.14.6-.09 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.08-.13-.28-.21-.58-.35z"></path></svg>
               <span>WhatsApp</span>
             </a>
-            <a href="https://www.instagram.com/mr.r_a_j_a_04/" target="_blank" class="btn-contact btn-instagram">
+            <a href="https://www.instagram.com/im_boopathiraja?igsh=eHRybWpsOHhodndy" target="_blank" class="btn-contact btn-instagram">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
               <span>Instagram</span>
             </a>
           </div>
         </div>
-        <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-        </div>
       </article>
 
-      <!-- Timeline posts -->
       <article class="post" id="new-job">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -1015,22 +539,8 @@
           <p>I'm incredibly grateful for this opportunity and can't wait to dive in. A huge thank you to everyone who supported me on my journey to get here!</p>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-          <div class="post-reactions">
-            <span>🎉</span>
-            <span>300+ reactions</span>
-          </div>
+           <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
+           <div class="post-reactions"><div class="reaction-stack"><svg viewBox="0 0 24 24" fill="#0a66c2"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">👍</text></svg><svg viewBox="0 0 24 24" fill="#c37d16"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">👏</text></svg></div><span>300+ reactions</span></div>
         </div>
       </article>
 
@@ -1052,22 +562,8 @@
           </ul>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-          <div class="post-reactions">
-            <span>💡</span>
-            <span>80+ reactions</span>
-          </div>
+          <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
+          <div class="post-reactions"><div class="reaction-stack"><svg viewBox="0 0 24 24" fill="#d11124"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">❤️</text></svg></div><span>80+ reactions</span></div>
         </div>
       </article>
 
@@ -1080,28 +576,14 @@
             </div>
           </div>
         </div>
-        <div class="post-content" style="padding: 0 24px 16px 24px;">
+        <div class="post-content">
           <h3>Education</h3>
           <p><strong>B.E. Computer Science and Engineering</strong><br>Sri Shanmugha College of Engineering and Technology (2024)</p>
           <p style="margin-top: 10px;">Excited to have officially graduated with my Bachelor of Engineering in CSE. Four years of hard work, complete! On to the next chapter.</p>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-          <div class="post-reactions">
-            <span>❤️</span>
-            <span>1000+ reactions</span>
-          </div>
+          <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
+          <div class="post-reactions"><div class="reaction-stack"><svg viewBox="0 0 24 24" fill="#d11124"><circle cx="12" cy="12" r="12"/><text x="4" y="16" fill="white" font-size="12">❤️</text></svg></div><span>1000+ reactions</span></div>
         </div>
       </article>
 
@@ -1119,25 +601,10 @@
           <p>Hi everyone, happy to share that I've successfully completed my 12th (HSC). A big milestone passed. Looking forward to starting my engineering journey next!</p>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-          <div class="post-reactions">
-            <span>👍</span>
-            <span>200+ reactions</span>
-          </div>
+           <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
         </div>
       </article>
-      
+
       <article class="post" id="sslc">
         <div class="post-header">
           <img src="Profile.jpg" alt="Boopathiraja Kannan" class="post-avatar">
@@ -1152,207 +619,139 @@
           <p>Hi guys! So happy to share that I've successfully completed my 10th (SSLC). A great start and excited for the next step in school!</p>
         </div>
         <div class="post-actions">
-          <div class="like-btn-wrapper">
-            <button class="like-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg>
-              <span>Like</span>
-            </button>
-            <div class="reactions-popup">
-              <span class="reaction-icon" data-reaction="Like" data-icon="👍">👍</span>
-              <span class="reaction-icon" data-reaction="Love" data-icon="❤️">❤️</span>
-              <span class="reaction-icon" data-reaction="Clap" data-icon="👏">👏</span>
-              <span class="reaction-icon" data-reaction="Insightful" data-icon="💡">💡</span>
-            </div>
-          </div>
-          <div class="post-reactions">
-            <span>👍</span>
-            <span>100+ reactions</span>
-          </div>
+           <div class="like-btn-wrapper"><button class="like-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg><span>Like</span></button></div>
         </div>
       </article>
 
     </main>
 
-    <!-- RIGHT (chat) -->
     <aside class="right">
-      <div class="chat-window">
-        <div style="display:flex;align-items:center;gap:10px">
-          <img src="Profile.jpg" alt="Boopathiraja" style="width:44px;height:44px;border-radius:10px;object-fit:cover;">
-          <div><strong>Hello — I'm a helper</strong><div style="color:var(--muted);font-size:13px">Click a quick action to jump to that section</div></div>
+      <div class="chat-card">
+        <div class="chat-header">
+          <div style="position:relative;">
+            <img src="Profile.jpg" alt="Bot" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+            <div class="chat-status"></div>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text-main)">Messaging</div>
+            <div style="font-size:12px;color:var(--text-sub)">Online</div>
+          </div>
         </div>
-
         <div class="chat-messages" id="chatMessages">
-          <div class="bubble bot">Welcome! 👋 All the content is now updated with my resume details.</div>
-          <div class="bubble bot">Try clicking "Experience" or "Skills" to jump to a section.</div>
+          <div class="bubble bot">Hi! 👋 I can help you navigate Boopathiraja's portfolio. What would you like to see?</div>
+          <div class="quick-actions">
+            <div class="chip" data-target="experience">Experience</div>
+            <div class="chip" data-target="skills">Skills</div>
+            <div class="chip" data-target="projects">Achievements</div>
+            <div class="chip" data-target="contact">Contact</div>
+          </div>
         </div>
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Write a message...">
+          <button class="chat-send" id="sendBtn"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+        </div>
+      </div>
 
-        <div class="quick">
-          <button class="btn" data-target="about">About me</button>
-          <button class="btn" data-target="new-job">New Job!</button>
-          <button class="btn" data-target="experience">Experience</button>
-          <button class="btn" data-target="skills">Skills</button>
-          <button class="btn" data-target="education">Education</button>
-          <button class="btn" data-target="certifications">Certifications</button>
-          <button class="btn" data-target="projects">Achievements</button>
-          <button class="btn" data-target="contact">Contact</button>
-        </div>
-
-        <div class="composer">
-          <input id="chatInput" placeholder="Say hi or type a section name (e.g. 'skills')" />
-          <button id="sendBtn">Send</button>
-        </div>
+      <div class="ad-card" id="dynamicAd">
+        <span class="ad-label">Promoted</span>
+        <div class="ad-content" id="adContent"></div>
       </div>
     </aside>
   </div>
 
   <script>
-    // Like Button Animation
+    /* REACTION LOGIC */
     document.querySelectorAll('.like-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (!btn.closest('.like-btn-wrapper').querySelector('.reaction-icon:hover')) {
-          btn.classList.toggle('liked');
-          btn.classList.remove('liked-love', 'liked-clap', 'liked-insightful');
-          if (!btn.classList.contains('liked')) {
-            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
-          } else {
-            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
-          }
+        btn.classList.toggle('liked');
+        if (!btn.classList.contains('liked')) {
+             btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3Z"/></svg> <span>Like</span>`;
         }
       });
     });
-
-    // Reaction Icon Click Handler
-    document.querySelectorAll('.reaction-icon').forEach(icon => {
-      icon.addEventListener('click', () => {
-        const reaction = icon.getAttribute('data-reaction');
-        const reactionIcon = icon.getAttribute('data-icon');
-        const wrapper = icon.closest('.like-btn-wrapper');
-        const likeBtn = wrapper.querySelector('.like-btn');
-        const reactionsEl = wrapper.parentElement.querySelector('.post-reactions');
-
-        likeBtn.innerHTML = `<span>${reactionIcon}</span> <span>${reaction}</span>`;
-        
-        likeBtn.classList.remove('liked', 'liked-love', 'liked-clap', 'liked-insightful');
-        likeBtn.classList.add('liked');
-
-        if (reaction === 'Love') {
-          likeBtn.classList.add('liked-love');
-        } else if (reaction === 'Clap') {
-          likeBtn.classList.add('liked-clap');
-        } else if (reaction === 'Insightful') {
-          likeBtn.classList.add('liked-insightful');
-        }
-
-        if (reactionsEl) {
-          reactionsEl.querySelector('span:first-child').textContent = reactionIcon;
-        }
-        
-        icon.closest('.reactions-popup').style.visibility = 'hidden';
-        setTimeout(() => {
-          icon.closest('.reactions-popup').style.visibility = '';
-        }, 100);
-      });
-    });
-
-    // Smooth scroll when clicking quick buttons
-    document.querySelectorAll('.btn[data-target]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const id = btn.getAttribute('data-target');
-        const el = document.getElementById(id);
-        if(el){
-          const postHeader = el.querySelector('.post-header');
-          if(postHeader) {
-            postHeader.scrollIntoView({behavior:'smooth',block:'start'});
-          } else {
-            el.scrollIntoView({behavior:'smooth',block:'start'});
-          }
-          addChat('me', `Show ${id}`);
-          setTimeout(()=> addChat('bot', `Jumped to ${id}`), 400);
-        }
-      })
-    })
-
-    // Smooth scroll for Contact button
-    document.querySelector('.btn-secondary[href="#contact"]').addEventListener('click', (e) => {
-      e.preventDefault();
-      const el = document.getElementById('contact');
-      if (el) {
-        const postHeader = el.querySelector('.post-header');
-        if(postHeader) {
-          postHeader.scrollIntoView({behavior:'smooth',block:'start'});
-        } else {
-          el.scrollIntoView({behavior:'smooth',block:'start'});
-        }
-      }
-    });
-
-    // Chat functions
+    
+    /* CHAT & SCROLL LOGIC */
     const chat = document.getElementById('chatMessages');
-    function addChat(who,msg){
+    function addChat(who, msg) {
       const div = document.createElement('div');
-      div.className = 'bubble ' + (who==='me' ? 'me' : 'bot');
+      div.className = 'bubble ' + (who === 'me' ? 'me' : 'bot');
       div.textContent = msg;
-      chat.appendChild(div);
+      const actions = chat.querySelector('.quick-actions');
+      if(actions) chat.insertBefore(div, actions); else chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
 
-      chat.scrollTo({
-        top: chat.scrollHeight,
-        behavior: 'smooth'
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        addChat('me', chip.textContent);
+        setTimeout(() => {
+          const targetId = chip.getAttribute('data-target');
+          addChat('bot', `Showing ${chip.textContent}...`);
+          const el = document.getElementById(targetId);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 500);
       });
-    }
-
-    document.getElementById('sendBtn').addEventListener('click',()=>{
-      const val = document.getElementById('chatInput').value.trim();
-      if(!val) return;
-      addChat('me', val);
-      document.getElementById('chatInput').value='';
-      respondTo(val);
     });
+    
+    /* DYNAMIC AD ROTATION (Smooth Transition Fix) */
+    const adData = [
+      { headline: "Azure Expert?", bold: "Provisioned 50+ VMs & Managed Infra.", cta: "See Skills", link: "#skills" },
+      { headline: "VDI Issues?", bold: "90% First Contact Resolution Rate.", cta: "View Results", link: "#projects" },
+      { headline: "Hiring?", bold: "Boopathiraja is Open to Work.", cta: "Contact", link: "#contact" },
+      { headline: "Certified?", bold: "Google IT Support & Python Certified.", cta: "Credentials", link: "#certifications" },
+      { headline: "Problem Solver", bold: "Fixed critical Black Screen issues.", cta: "Read More", link: "#projects" },
+      { headline: "Tech Stack", bold: "Azure, Linux, Python, M365.", cta: "Full Stack", link: "#skills" },
+      { headline: "Education", bold: "B.E. Computer Science Graduate.", cta: "View Edu", link: "#education" },
+      { headline: "Location", bold: "Based in Chennai, India.", cta: "Maps", link: "#about" },
+      { headline: "Scripting", bold: "Python automation for Admin tasks.", cta: "Code", link: "#skills" },
+      { headline: "Support", bold: "L1 Incident Management Pro.", cta: "Experience", link: "#experience" },
+      { headline: "Connect", bold: "Let's discuss opportunities.", cta: "Message", link: "#contact" },
+      { headline: "Innovation", bold: "Driving cloud efficiency daily.", cta: "About Me", link: "#about" },
+      { headline: "Tools", bold: "Serial Console Expert.", cta: "Tooling", link: "#skills" },
+      { headline: "Availability", bold: "Ready for immediate start.", cta: "Hire Me", link: "#contact" },
+      { headline: "Reliability", bold: "Reduced user downtime significantly.", cta: "Impact", link: "#experience" },
+      { headline: "Portfolio", bold: "Check my Framer site too.", cta: "Visit", link: "https://brk.framer.website" },
+      { headline: "Network", bold: "Expanding professional connections.", cta: "Connect", link: "https://linkedin.com/in/raj-boopathi" },
+      { headline: "Growth", bold: "Continuously learning new tech.", cta: "Learning", link: "#certifications" },
+      { headline: "Team Player", bold: "Cross-functional collaboration.", cta: "Soft Skills", link: "#experience" },
+      { headline: "Goals", bold: "Aiming for Cloud Engineer roles.", cta: "Career", link: "#about" }
+    ];
 
-    document.getElementById('chatInput').addEventListener('keydown', (e)=>{
-      if(e.key==='Enter'){
-        e.preventDefault();
-        document.getElementById('sendBtn').click();
-      }
-    });
+    let adIndex = 0;
+    const adContentDiv = document.getElementById('adContent');
 
-    function respondTo(text){
-      const t = text.toLowerCase();
-      let targetId = null;
-      if(t.includes('about')) targetId = 'about';
-      else if(t.includes('exp')||t.includes('experience')) targetId = 'experience';
-      else if(t.includes('skill')) targetId = 'skills';
-      else if(t.includes('edu')) targetId = 'education';
-      else if(t.includes('cert') || t.includes('course')) targetId = 'certifications';
-      else if(t.includes('proj') || t.includes('achieve')) targetId = 'projects';
-      else if(t.includes('contact')) targetId = 'contact';
-      else if(t.includes('job')) targetId = 'new-job';
-      else if(t.includes('12th') || t.includes('hsc')) targetId = 'hsc';
-      else if(t.includes('10th') || t.includes('sslc')) targetId = 'sslc';
-
-      if(targetId) {
-        const el = document.getElementById(targetId);
-        if(el) {
-          return setTimeout(()=>{ 
-            let friendlyName = targetId.charAt(0).toUpperCase() + targetId.slice(1);
-            if (targetId === 'projects') friendlyName = 'Achievements';
-            if (targetId === 'hsc') friendlyName = '12th Completion';
-            if (targetId === 'sslc') friendlyName = '10th Completion';
-            if (targetId === 'new-job') friendlyName = 'New Job Announcement';
-            addChat('bot', `Opening ${friendlyName}...`);
-            const postHeader = el.querySelector('.post-header');
-            if(postHeader) {
-              postHeader.scrollIntoView({behavior:'smooth', block: 'start'});
-            } else {
-              el.scrollIntoView({behavior:'smooth', block: 'start'});
-            }
-          }, 400);
-        }
-      }
+    function renderAd() {
+      const ad = adData[adIndex];
+      // 1. Fade Out
+      adContentDiv.style.opacity = '0';
       
-      setTimeout(()=> addChat('bot', "I can jump to sections: about, experience, skills, education, certifications, achievements, contact. Try one of those!"), 600);
+      // 2. Wait for fade out to finish, then swap content and Fade In
+      setTimeout(() => {
+        adContentDiv.innerHTML = `
+          <img src="Profile.jpg" class="ad-img">
+          <div class="ad-text-group"><div class="ad-headline">${ad.headline}</div><span class="ad-bold">${ad.bold}</span></div>
+          <a href="${ad.link}" class="ad-cta">${ad.cta}</a>
+        `;
+        
+        // Add click listener if internal link
+        if(ad.link.startsWith('#')){
+            adContentDiv.querySelector('.ad-cta').addEventListener('click', (e) => {
+               e.preventDefault();
+               const el = document.getElementById(ad.link.replace('#',''));
+               if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+            });
+        }
+
+        // Fade In
+        adContentDiv.style.opacity = '1';
+      }, 300); // Wait 300ms matches CSS transition time
+
+      adIndex = (adIndex + 1) % adData.length;
     }
 
-    // reveal animation
+    renderAd();
+    setInterval(renderAd, 4000);
+    
     window.addEventListener('load', ()=>{
       setTimeout(()=>{
         document.querySelectorAll('.post').forEach((p,i)=>{ 
